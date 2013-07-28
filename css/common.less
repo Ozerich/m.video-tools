@@ -1,0 +1,141 @@
+header {
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  width: 100%;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+  background-repeat: repeat-x;
+  border: 1px solid #d4d4d4;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+
+  img {
+    height: 50px;
+    line-height: 70px;
+  }
+}
+
+.container {
+  width: 900px !important;
+  margin-bottom: 20px;
+}
+
+.template {
+  display: none;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+.page-header {
+  margin: 10px 0;
+  .buttons {
+    text-align: right;
+    margin-top: 18px;
+  }
+}
+
+fieldset {
+  .row-submit {
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 15px;
+    text-align: center;
+  }
+  .errorMessage {
+    color: red;
+    font-size: 11px;
+  }
+}
+
+table {
+  .cell-actions {
+    text-align: right;
+  }
+  margin-bottom: 0 !important;
+}
+
+#page_home {
+  table {
+    .cell-pages, .cell-links {
+      text-align: center;
+      width: 50px;
+    }
+  }
+}
+
+#page_newspaper_edit {
+  .pages-container {
+
+    .cell-num {
+      width: 50px;
+      select {
+        width: 50px;
+        text-align: center
+      }
+    }
+
+    .cell-count {
+      text-align: center;
+      width: 125px;
+    }
+
+    .cell-actions {
+      width: 160px;
+    }
+
+    .cell-image {
+      text-align: center;
+      .edit-container {
+        margin-bottom: 10px;
+        input {
+          width: 90%;
+        }
+        .icon-ok {
+          color: #00a000;
+          &:hover {
+            color: #006300;
+          }
+        }
+      }
+
+      img {
+        max-width: 300px;
+        max-height: 200px;
+      }
+    }
+  }
+}
+
+.glyphicon {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+#page_newspaper_html {
+  width: 900px;
+  .modal-content {
+    padding: 10px;
+    background: #fff;
+    textarea {
+      width: 800px;
+      height: 500px;
+    }
+  }
+}

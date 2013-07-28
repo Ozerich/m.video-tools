@@ -8,7 +8,6 @@ class UserIdentity extends CUserIdentity
     public function authenticate()
     {
         $user = User::model()->find('LOWER(email)=?', array(strtolower($this->username)));
-
         if (($user === null) or !$user->validatePassword($this->password)) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         } else {

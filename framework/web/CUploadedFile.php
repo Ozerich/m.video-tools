@@ -98,9 +98,9 @@ class CUploadedFile extends CComponent
 	 */
 	public static function getInstancesByName($name)
 	{
+
 		if(null===self::$_files)
 			self::prefetchFiles();
-
 		$len=strlen($name);
 		$results=array();
 		foreach(array_keys(self::$_files) as $key)

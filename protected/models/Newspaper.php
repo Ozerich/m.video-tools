@@ -15,7 +15,7 @@ class Newspaper extends CActiveRecord
     public function rules()
     {
         return array(
-            array('user_id, date, name', 'required'),
+            array('user_id, date, name, reff', 'required'),
         );
     }
 
@@ -24,6 +24,7 @@ class Newspaper extends CActiveRecord
         return array(
             'user_id' => 'Создатель газеты',
             'date' => 'Дата публикации',
+            'reff' => 'Реф',
             'name' => 'Название газеты',
         );
     }

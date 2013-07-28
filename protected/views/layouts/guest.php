@@ -8,9 +8,8 @@
     <title>Газета М.Видео</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/css/bootstrap-glyphicons/less/bootstrap-glyphicons.less" rel="stylesheet/less" type="text/less" media="screen">
-
     <link href="/css/common.less" rel="stylesheet/less" type="text/less" media="screen">
+    <link href="/css/login.less" rel="stylesheet/less" type="text/less" media="screen">
 
     <script src="/js/jquery-2.0.3.min.js"></script>
     <script src="/js/bootstrap-3.0.0.min.js"></script>
@@ -28,8 +27,6 @@
     <a href="/" class="brand"><img src="/img/mvideo.png"></a>
 </header>
 
-<div class="container">
-    <?=$content?>
-</div>
 
+    <?=$content?>
 </body>

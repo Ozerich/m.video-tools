@@ -29,6 +29,7 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+
                 'login' => 'auth/login',
                 'logout' => 'auth/logout',
 
@@ -54,8 +55,5 @@ return array(
                 ),
             ),
         ),
-    ),
-
-    'params' => array(
     ),
 );

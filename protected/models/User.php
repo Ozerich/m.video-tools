@@ -16,7 +16,7 @@ class User extends CActiveRecord
     {
         return array(
             array('email', 'required'),
-            array('name, surname', 'safe'),
+            array('name, surname, password', 'safe'),
             array('email', 'email'),
         );
     }
@@ -39,5 +39,11 @@ class User extends CActiveRecord
     public function hashPassword($password)
     {
         return md5($password);
+    }
+
+
+    public function __toString()
+    {
+        return $this->name . ' ' . $this->surname;
     }
 }
