@@ -8,11 +8,14 @@
     <title>Газета М.Видео</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/css/bootstrap-glyphicons/less/bootstrap-glyphicons.less" rel="stylesheet/less" type="text/less" media="screen">
+    <link href="/css/imgareaselect/imgareaselect-default.css" rel="stylesheet" media="screen">
+    <link href="/css/bootstrap-glyphicons/less/bootstrap-glyphicons.less" rel="stylesheet/less" type="text/less"
+          media="screen">
 
     <link href="/css/common.less" rel="stylesheet/less" type="text/less" media="screen">
 
     <script src="/js/jquery-2.0.3.min.js"></script>
+    <script src="/js/jquery.imgareaselect.js"></script>
     <script src="/js/bootstrap-3.0.0.min.js"></script>
     <script src="/js/less-1.3.3.min.js"></script>
 
@@ -23,6 +26,8 @@
 </head>
 
 <body>
+
+<? $this->renderPartial('//page_panel'); ?>
 
 <header>
     <a href="/" class="brand"><img src="/img/mvideo.png"></a>

@@ -66,10 +66,10 @@
                             </div>
                             <img src="<?= $page->image ?>">
                         </td>
-                        <td class="cell-count">0</td>
+                        <td class="cell-count"><?=count($page->regions);?></td>
                         <td class="cell-actions">
                             <a class="btn btn-small btn-info"
-                               href="/pages/<?= $model->id ?>/<?= $page->id ?>">Ссылки</a>
+                               href="/pages/<?= $model->id ?>/?page=<?= $page->id ?>">Ссылки</a>
                             <a class="btn btn-small btn-danger action-delete"
                                href="/newspaper/delete_page/<?= $page->id ?>">Удалить</a>
                         </td>

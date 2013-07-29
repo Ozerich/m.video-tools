@@ -1,3 +1,8 @@
+<div class="modal fade" id="modalHtml">
+    <div id="page_newspaper_html" class="modal-dialog">
+        <div class="modal-body">
+
+
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -11,5 +16,8 @@
     <div class="modal-footer">
         <a href="/newspaper/download_html/<?=$model->id?>" class="btn btn-success">Скачать как файл</a>
         <a disabled href="#" class="btn btn-primary">Скопировать в буфер</a>
+    </div>
+</div>
+        </div>
     </div>
 </div>

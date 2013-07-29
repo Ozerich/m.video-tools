@@ -30,7 +30,7 @@ header {
 }
 
 .container {
-  width: 900px !important;
+  width: 1000px !important;
   margin-bottom: 20px;
 }
 
@@ -137,5 +137,130 @@ table {
       width: 800px;
       height: 500px;
     }
+  }
+}
+
+#page_pages {
+
+  .row-pagination {
+    text-align: center;
+    margin-bottom: 15px;
+    .pagination {
+      margin: 0 auto;
+    }
+  }
+
+  .image-container {
+    border: 1px solid;
+    padding: 10px;
+    background: #dddddd;
+    text-align: center;
+    position: relative;
+
+    .image-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+
+    .loader {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 99999;
+      background: #aaa;
+      opacity: 0.95;
+      p {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 30px;
+        display: block;
+      }
+    }
+
+    .image-item {
+      position: absolute;
+      background: #fff;
+      opacity: 0.3;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+  }
+}
+
+#page_panel {
+  width: 100%;
+  top: 0;
+  position: fixed;
+  background: #eee;
+  height: 150px;
+  z-index: 99999;
+  border-bottom: 1px solid #aaa;
+
+  .preview-container {
+    width: 150px;
+    float: left;
+    margin-top: 5px;
+    margin-right: 25px;
+    .preview-wrapper {
+      width: 140px;
+      height: 140px;
+      overflow: hidden;
+      position: relative;
+      img {
+        position: relative;
+      }
+    }
+  }
+
+  .dimensions-container {
+    width: 200px;
+    float: left;
+    margin: 10px 25px 0 0;
+    .line {
+      clear: both;
+      .param {
+        width: 90px;
+        float: left;
+        margin: 5px 5px 15px 0;
+        label {
+          display: block;
+          font-size: 12px;
+        }
+        input {
+          width: 90px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .links-container {
+    width: 400px;
+    float: left;
+    margin: 15px 25px 0 0;
+    .line {
+      .param {
+        &:first-child {
+          margin-bottom: 20px;
+        }
+        label {
+          display: block;
+          font-size: 12px;
+        }
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .buttons-container {
+    margin-top: 35px;
+    .top {
+      height: 68px;
+    }
+
   }
 }

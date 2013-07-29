@@ -23,7 +23,7 @@ class NewspaperController extends Controller
                     $page->save();
                 }
 
-                $this->redirect('/');
+                $this->redirect('/newspaper/edit/'.$model->id);
             }
 
         }
