@@ -687,11 +687,11 @@ $.imgAreaSelect = function (img, options) {
     if (opera)
 
         $areaOpera = div().css({ width: '100%', height: '100%',
-            position: 'absolute', zIndex: zIndex + 2 || 2 });
+            position: 'absolute', zIndex: zIndex + 220000 || 220000 });
 
     $box.add($outer).css({ visibility: 'hidden', position: position,
         overflow: 'hidden', zIndex: zIndex || '0' });
-    $box.css({ zIndex: zIndex + 2 || 2 });
+    $box.css({ zIndex: zIndex + 220000 || 220000 });
     $area.add($border).css({ position: 'absolute', fontSize: 0 });
 
     img.complete || img.readyState == 'complete' || !$img.is('img') ?

@@ -17,6 +17,12 @@
                     <label>Y:</label>
                     <input class="param-y" type="text">
                 </div>
+				<div class="param param-pos">
+					<label>Позиция:</label>
+					<a href="#" class="glyphicon glyphicon-arrow-down"></a>
+					<input class="param-pos" disabled type="text">
+					<a href="#" class="glyphicon glyphicon-arrow-up"></a>
+				</div>
             </div>
             <div class="line">
                 <div class="param">

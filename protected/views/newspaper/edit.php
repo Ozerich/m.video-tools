@@ -40,7 +40,7 @@
         <h2>Страницы</h2>
 
         <form action="/newspaper/update_positions/<?= $model->id ?>" method="post">
-            <table class="table table-striped">
+            <table class="table">
                 <thead>
                 <tr>
                     <th class="cell-num">Номер</th>

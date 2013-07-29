@@ -34,7 +34,7 @@
             <? foreach ($newspaper->pages as $page): ?>
                 <? foreach ($page->regions as $region): ?>
                     <div title="<?= $region->url ?>" data-id="<?= $region->id ?>" data-page="<?= $page->id ?>"
-                         class="image-item" data-x="<?= $region->x ?>" data-y="<?= $region->y ?>"
+                         class="image-item" data-pos="<?=$region->pos?>" data-x="<?= $region->x ?>" data-y="<?= $region->y ?>"
                          data-width="<?= $region->width ?>" data-height="<?= $region->height ?>"
                          data-url="<?= $region->url ?>" data-alt="<?= $region->alt ?>"
                          style="display: none; left: <?= $region->x - 1 ?>px; width: <?= $region->width - 1 ?>px; top: <?= $region->y - 1 ?>px; height: <?= $region->height - 1 ?>px;"></div>

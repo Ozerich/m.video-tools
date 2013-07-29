@@ -215,13 +215,13 @@ table {
   }
 
   .dimensions-container {
-    width: 200px;
+    width: 220px;
     float: left;
     margin: 10px 25px 0 0;
     .line {
       clear: both;
       .param {
-        width: 90px;
+        width: 60px;
         float: left;
         margin: 5px 5px 15px 0;
         label {
@@ -229,9 +229,21 @@ table {
           font-size: 12px;
         }
         input {
-          width: 90px;
+          width: 60px;
           text-align: center;
         }
+		&.param-pos{
+			width: 75px;
+			a{
+				margin: 5px 2px;
+				float: left;
+				display: block;
+			}
+			input{
+				width: 35px;
+				float: left;
+			}
+		}
       }
     }
   }
