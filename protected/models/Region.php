@@ -39,5 +39,11 @@ class Region extends CActiveRecord
             'page' => array(self::BELONGS_TO, 'Page', 'page_id'),
         );
     }
+	
+	public function defaultScope(){
+		return array(
+			'order' => 'pos ASC'
+		);
+	}
 
 }
