@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2013-07-29 03:57:32
+Date: 2013-07-29 23:41:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,6 +54,7 @@ DROP TABLE IF EXISTS `regions`;
 CREATE TABLE `regions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
+  `pos` int(11) NOT NULL,
   `x` int(10) unsigned NOT NULL,
   `y` int(10) unsigned NOT NULL,
   `width` int(10) unsigned NOT NULL,
@@ -83,4 +84,4 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Vitaliy.Ozerskiy@mvideo.ru', '21232f297a57a5a743894a0e4a801fc3', 'Виталий', 'Озерский');
+INSERT INTO `users` VALUES ('1', 'Vitaliy.Ozerskiy@mvideo.ru', 'ff4097dbf39e935347e3ed0c61e390a6', 'Виталий', 'Озерский');
