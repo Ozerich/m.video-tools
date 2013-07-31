@@ -2,6 +2,11 @@
 
 class NewspaperController extends Controller
 {
+    public function actionIndex()
+    {
+        $this->render('index', array('newspapers' => Newspaper::model()->findAll()));
+    }
+
     public function actionCreate()
     {
         $model = new Newspaper();
