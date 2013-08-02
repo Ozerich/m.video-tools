@@ -10,7 +10,7 @@ class WebUser extends CWebUser {
         return $this->_model;
     }
 
-    protected function beforeLogin(){
+    protected function beforeLogin($id, $states, $fromCookie){
         $this->returnUrl=array('/');
         return true;
     }

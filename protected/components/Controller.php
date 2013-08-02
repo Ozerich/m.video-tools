@@ -8,7 +8,7 @@ class Controller extends CController
 
     public $breadcrumbs = array();
 
-    public function beforeAction(CAction $action)
+    public function beforeAction($action)
     {
         if (Yii::app()->user->isGuest && $action->getId() != 'login') {
             $this->redirect('/login');
