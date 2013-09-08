@@ -77,13 +77,18 @@
                 <? endforeach; ?>
                 </tbody>
             </table>
-            <? if ($model->pages): ?>
+
                 <div class="row">
                     <div class="col-3">
-                        <input type="submit" class="btn btn-small btn-primary" value="Сохранить порядок">
+                                   <? if ($model->pages): ?> <input type="submit" class="btn btn-small btn-primary" value="Сохранить порядок">            <? endif; ?>
+					</div>
+					<div class="col-6">
+					</div>
+					<div class="col-3" style="text-align: right">
+						<a href="/newspaper/add_page/<?=$model->id?>" class="btn btn-small btn-success">Добавить страницу</a>
                     </div>
                 </div>
-            <? endif; ?>
+
         </form>
     </div>
 </div>
@@ -107,5 +112,6 @@
 
             return false;
         });
+
     });
 </script>

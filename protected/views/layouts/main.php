@@ -37,4 +37,15 @@
     <?=$content?>
 </div>
 
+<footer>
+	<div class="footer-container">
+		Программа разработана специально для М.Видео
+		<div class="author">
+			<span>Автор: </span>
+			<a href="mailto:ozicoder@gmail.com">Виталий Озерский</a>
+			<span>&copy; 2013</span>
+		</div>
+	</div>
+</footer>
+
 </body>

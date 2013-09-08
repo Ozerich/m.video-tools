@@ -35,6 +35,20 @@ class NewspaperController extends Controller
 
         $this->render('create', array('model' => $model, 'pages_count' => Yii::app()->request->isPostRequest ? $_POST['pages_count'] : 8));
     }
+	
+	public function actionAdd_page($id){
+		$model = Newspaper::model()->findByPk($id);
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+		
+		$page = new Page;
+		$page->newspaper_id = $model->id;
+		$page->num = count($model->pages) + 1;
+		$page->save();
+	
+		$this->redirect('/newspaper/edit/'.$id);
+	}
 
 
     public function actionDelete($id)
