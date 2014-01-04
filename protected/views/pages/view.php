@@ -48,4 +48,4 @@
 </div>
 
 
-<script src="/js/page.js"></script>
+<script src="/web/js/page.js"></script>

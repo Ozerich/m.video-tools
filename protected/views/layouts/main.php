@@ -7,20 +7,20 @@
 
     <title>Газета М.Видео</title>
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/css/imgareaselect/imgareaselect-default.css" rel="stylesheet" media="screen">
-    <link href="/css/bootstrap-glyphicons/less/bootstrap-glyphicons.less" rel="stylesheet/less" type="text/less"
+    <link href="/web/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/web/css/imgareaselect/imgareaselect-default.css" rel="stylesheet" media="screen">
+    <link href="/web/css/bootstrap-glyphicons/less/bootstrap-glyphicons.less" rel="stylesheet/less" type="text/less"
           media="screen">
 
-    <link href="/css/common.less" rel="stylesheet/less" type="text/less" media="screen">
+    <link href="/web/css/common.less" rel="stylesheet/less" type="text/less" media="screen">
 
-    <script src="/js/jquery-2.0.3.min.js"></script>
-    <script src="/js/jquery.imgareaselect.js"></script>
-    <script src="/js/bootstrap-3.0.0.min.js"></script>
-    <script src="/js/less-1.3.3.min.js"></script>
+    <script src="/web/js/jquery-2.0.3.min.js"></script>
+    <script src="/web/js/jquery.imgareaselect.js"></script>
+    <script src="/web/js/bootstrap-3.0.0.min.js"></script>
+    <script src="/web/js/less-1.3.3.min.js"></script>
 
     <!--[if lt IE 9]>
-    <script src="/js/html5shiv.min.js"></script>
+    <script src="/web/js/html5shiv.min.js"></script>
     <![endif]-->
 
 </head>
@@ -30,7 +30,7 @@
 <? $this->renderPartial('//page_panel'); ?>
 
 <header>
-    <a href="/" class="brand"><img src="/img/mvideo.png"></a>
+    <a href="/" class="brand"><img src="/web/img/mvideo.png"></a>
 </header>
 
 <div class="container">
