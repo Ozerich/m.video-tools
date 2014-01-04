@@ -14,8 +14,8 @@
         </textarea>
     </div>
     <div class="modal-footer">
-        <a href="/newspaper/download_html/<?=$model->id?>" class="btn btn-success">Скачать как файл</a>
-        <a disabled href="#" class="btn btn-primary">Скопировать в буфер</a>
+        <a href="/newspaper/default/download_html/<?=$model->id?>" class="btn btn-success">Скачать как файл</a>
+
     </div>
 </div>
         </div>

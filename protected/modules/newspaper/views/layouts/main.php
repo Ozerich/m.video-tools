@@ -14,7 +14,6 @@
     <script src="/web/js/bootstrap-3.0.0.min.js"></script>
     <script src="/web/js/less-1.3.3.min.js"></script>
 
-
     <!--[if lt IE 9]>
     <script src="/web/js/html5shiv.min.js"></script>
     <![endif]-->
@@ -22,6 +21,8 @@
 </head>
 
 <body>
+
+<? $this->renderPartial('/page_panel'); ?>
 
 <header>
     <a href="/" class="brand"><img src="/web/img/mvideo.png"></a>

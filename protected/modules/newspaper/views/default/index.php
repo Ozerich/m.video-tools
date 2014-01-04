@@ -2,7 +2,7 @@
     <div class="page-header row">
         <div class="col-9"><h1>Газеты</h1></div>
         <div class="col-3 buttons">
-            <a href="/newspaper/create" class="btn btn-small btn-primary">Новая газета</a>
+            <a href="/newspaper/default/create" class="btn btn-small btn-primary">Новая газета</a>
         </div>
     </div>
 
@@ -17,17 +17,17 @@
         <tbody>
         <? foreach ($newspapers as $newsparer): ?>
             <tr>
-                <td><?=$newsparer->date?></td>
+                <td><?=date('d.m.Y', strtotime($newsparer->date))?></td>
                 <td><?=$newsparer->name?></td>
                 <td><?=$newsparer->user?></td>
                 <td class="cell-pages"><?=count($newsparer->pages);?></td>
                 <td class="cell-actions">
-                    <a data-toggle="modal" href="/newspaper/html/<?= $newsparer->id ?>"
+                    <a data-toggle="modal" href="/newspaper/default/html/<?= $newsparer->id ?>"
                        class="btn btn-small btn-warning">HTML код</a>
-                    <a href="/pages/<?= $newsparer->id ?>" class="btn btn-small btn-info">Ссылки</a>
-                    <a href="/newspaper/edit/<?= $newsparer->id ?>" class="btn btn-small btn-success">Редактировать</a>
+                    <a href="/newspaper/pages/view/<?= $newsparer->id ?>" class="btn btn-small btn-info">Ссылки</a>
+                    <a href="/newspaper/default/edit/<?= $newsparer->id ?>" class="btn btn-small btn-success">Редактировать</a>
                     <a onclick="return confirm('Вы уверены что хотите удалить газету?');"
-                       href="/newspaper/delete/<?= $newsparer->id ?>" class="btn btn-small btn-danger">Удалить</a>
+                       href="/newspaper/default/delete/<?= $newsparer->id ?>" class="btn btn-small btn-danger">Удалить</a>
                 </td>
             </tr>
         <? endforeach; ?>

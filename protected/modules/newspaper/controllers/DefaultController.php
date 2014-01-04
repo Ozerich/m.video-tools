@@ -1,6 +1,6 @@
 <?php
 
-class NewspaperController extends Controller
+class DefaultController extends Controller
 {
     public function actionIndex()
     {
@@ -28,7 +28,7 @@ class NewspaperController extends Controller
                     $page->save();
                 }
 
-                $this->redirect('/newspaper/edit/'.$model->id);
+                $this->redirect('/default/edit/'.$model->id);
             }
 
         }
@@ -47,7 +47,7 @@ class NewspaperController extends Controller
 		$page->num = count($model->pages) + 1;
 		$page->save();
 	
-		$this->redirect('/newspaper/edit/'.$id);
+		$this->redirect('/default/edit/'.$id);
 	}
 
 

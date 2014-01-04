@@ -32,7 +32,7 @@ class Page extends CActiveRecord
     public function relations()
     {
         return array(
-            'newspaper' => array(self::BELONGS_TO, 'Newspaper', 'newspaper_id'),
+            'default' => array(self::BELONGS_TO, 'Newspaper', 'newspaper_id'),
             'regions' => array(self::HAS_MANY, 'Region', 'page_id')
         );
     }

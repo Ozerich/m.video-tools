@@ -224,7 +224,7 @@ $(function () {
 
     $page_panel.find('.action-delete').on('click', function () {
         if (!confirm('Вы уверены что хотите удалить блок?'))return;
-        $.get('/pages/delete_item/' + active_item_id);
+        $.get('/newspaper/pages/delete_item/' + active_item_id);
 		
 		var $item = $('.image-container').find('.image-item[data-id=' + active_item_id + ']');
 		var pos = +$item.data('pos');
@@ -289,7 +289,7 @@ $(function () {
         });
 
         (function ($page_item) {
-            $.post('/pages/item', request, function (id) {
+            $.post('/newspaper/pages/item', request, function (id) {
                 $page_item.attr('data-id', id);
             });
         })($page_item);

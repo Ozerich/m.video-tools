@@ -3,7 +3,7 @@
     <div class="page-header row">
         <div class="col-9"><h1>Газета "<?=$model->name?>"</h1></div>
         <div class="col-3 buttons">
-            <a href="/pages/<?= $model->id ?>" class="btn btn-primary">Редактировать ссылки</a>
+            <a href="/newspaper/pages/view/<?= $model->id ?>" class="btn btn-primary">Редактировать ссылки</a>
         </div>
     </div>
 
@@ -69,9 +69,9 @@
                         <td class="cell-count"><?=count($page->regions);?></td>
                         <td class="cell-actions">
                             <a class="btn btn-small btn-info"
-                               href="/pages/<?= $model->id ?>/?page=<?= $page->id ?>">Ссылки</a>
+                               href="/newspaper/default/pages/<?= $model->id ?>/?page=<?= $page->id ?>">Ссылки</a>
                             <a class="btn btn-small btn-danger action-delete"
-                               href="/newspaper/delete_page/<?= $page->id ?>">Удалить</a>
+                               href="/newspaper/default/delete_page/<?= $page->id ?>">Удалить</a>
                         </td>
                     </tr>
                 <? endforeach; ?>
@@ -108,7 +108,7 @@
             var src = $block.find('input[type=text]').val();
 
             $block.find('img').attr('src', src);
-            $.post('/newspaper/update_page_image', {page_id: pageId, src: src});
+            $.post('/newspaper/default/update_page_image', {page_id: pageId, src: src});
 
             return false;
         });

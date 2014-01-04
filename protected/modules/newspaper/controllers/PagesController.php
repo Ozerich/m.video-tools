@@ -2,14 +2,12 @@
 
 class PagesController extends Controller
 {
-
     public function actionView($id)
     {
         $newspaper = Newspaper::model()->findByPk($id);
         if (!$newspaper) {
             throw new CHttpException(404);
         }
-
 
         $this->render('view', array('newspaper' => $newspaper));
     }
