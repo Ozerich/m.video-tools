@@ -98,6 +98,17 @@ function updateItemsZIndex(){
 
 $(function () {
 
+	$(document).on('keydown', function(e){
+		if($page_panel.is(':visible')){
+			if(e.keyCode == 27){
+				$page_panel.find('.action-cancel').trigger('click');
+			}
+			else if(e.keyCode == 13){
+				$page_panel.find('.action-save').trigger('click');
+			}	
+		}
+	});
+
     scene = $('#scene').imgAreaSelect({
         instance: true,
         handles: true,
