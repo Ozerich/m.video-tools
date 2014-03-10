@@ -7,26 +7,17 @@
 
     <title>Газета М.Видео</title>
 
-    <link href="/web/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/web/css/common.less" rel="stylesheet/less" type="text/less" media="screen">
-    <link href="/web/css/login.less" rel="stylesheet/less" type="text/less" media="screen">
-
-    <script src="/web/js/jquery-2.0.3.min.js"></script>
-    <script src="/web/js/bootstrap-3.0.0.min.js"></script>
-    <script src="/web/js/less-1.3.3.min.js"></script>
+    <link rel="stylesheet" href="/web/css/styles.guest.min.css">
 
     <!--[if lt IE 9]>
-    <script src="/web/js/html5shiv.min.js"></script>
+    <script src="/web/js/vendors/html5shiv.min.js"></script>
     <![endif]-->
-
 </head>
 
-<body>
-
+<body class="no-auth">
 <header>
     <a href="/" class="brand"><img src="/web/img/mvideo.png"></a>
 </header>
-
-
-    <?=$content?>
+<?= $content ?>
 </body>
+</html>

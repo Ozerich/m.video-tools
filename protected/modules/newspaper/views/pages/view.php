@@ -46,4 +46,4 @@
 </div>
 
 
-<script src="/web/js/page.js"></script>
+<script src="/web/js/newspaper_module/page.js"></script>

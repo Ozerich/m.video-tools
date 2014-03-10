@@ -1,4 +1,4 @@
-<div id="page_newspaper_index">
+<div id="page_newspaper_index" class="page-list">
     <div class="page-header row">
         <div class="col-9"><h1>Газеты</h1></div>
         <div class="col-3 buttons">

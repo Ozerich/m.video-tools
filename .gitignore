@@ -1,2 +1,3 @@
 protected/config/db.php
 .idea/*
+node_modules
