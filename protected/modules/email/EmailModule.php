@@ -7,6 +7,10 @@ class EmailModule extends CWebModule
         $this->setImport(
             array(
                 'email.models.*',
+                'email.components.*',
+                'email.components.Import.*',
+                'email.components.Import.Parsers.*',
+                'email.components.Import.Models.*',
             )
         );
     }

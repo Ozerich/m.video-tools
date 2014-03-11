@@ -1,6 +1,6 @@
 <fieldset>
     <div class="row">
-        <div class="col-12 constructor-container constructor-container-footer">
+        <div class="col-12 constructor-container constructor-blocks-container constructor-container-footer">
             <span>Структура:</span>
 
             <div class="blocks">

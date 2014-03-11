@@ -29,7 +29,7 @@ class AjaxController extends Controller
     {
         $id = Yii::app()->request->getPost('id');
 
-        $model = LetterBlock::model()->findByPk($id);
+        $model = Yii::app()->request->getPost('type') == 'catalog' ? LetterCatalogBlock::model()->findByPk($id) : LetterBlock::model()->findByPk($id);
         if (!$model) {
             throw new CHttpException(404);
         }
@@ -43,36 +43,59 @@ class AjaxController extends Controller
     {
         $id = Yii::app()->request->getPost('id');
 
+        $is_catalog = Yii::app()->request->getPost('position') == 'catalog';
+
         if ($id) {
-            $model = LetterBlock::model()->findByPk($id);
+            $model = $is_catalog ? LetterCatalogBlock::model()->findByPk($id) : LetterBlock::model()->findByPk($id);
             if (!$model) {
                 throw new CHttpException(404);
             }
         } else {
-            $model = new LetterBlock();
+            $model = $is_catalog ? new LetterCatalogBlock() : new LetterBlock();
             $model->letter_id = Yii::app()->request->getPost('letter_id');
         }
 
-        $model->position = Yii::app()->request->getPost('position');
         $model->type = Yii::app()->request->getPost('type');
 
         $request_data = Yii::app()->request->getPost('data');
+        if ($is_catalog) {
 
-        $model->text = $model->banner_url = $model->banner_file = '';
+            $model->columns = Yii::app()->request->getPost('columns', 2);
 
-        if ($model->type == 'banner') {
-            $model->banner_url = isset($request_data['url']) ? $request_data['url'] : '';
-            $model->banner_file = isset($request_data['file']) ? $request_data['file'] : '';
-        } else if ($model->type == 'text') {
-            $model->text = isset($request_data['text']) ? $request_data['text'] : '';
+            $model->url = isset($request_data['url']) ? $request_data['url'] : '';
+            $model->image = isset($request_data['image']) ? $request_data['image'] : '';
+
+            if ($model->type == 'product') {
+                $model->product_category = isset($request_data['category']) ? $request_data['category'] : '';
+                $model->product_model = isset($request_data['model']) ? $request_data['model'] : '';
+                $model->product_yellow = isset($request_data['yellow']) ? $request_data['yellow'] : '';
+                $model->product_price = isset($request_data['price']) ? $request_data['price'] : '';
+                $model->product_old_price = isset($request_data['old_price']) ? $request_data['old_price'] : null;
+                $model->product_all_url = isset($request_data['all_url']) ? $request_data['all_url'] : null;
+                $model->product_all_label = isset($request_data['all_label']) ? $request_data['all_label'] : null;
+                $model->product_features = isset($request_data['features']) ? explode("\n", $request_data['features']) : array();
+            }
+
+        } else {
+            $model->position = Yii::app()->request->getPost('position');
+
+            $model->text = $model->banner_url = $model->banner_file = '';
+
+            if ($model->type == 'banner') {
+                $model->banner_url = isset($request_data['url']) ? $request_data['url'] : '';
+                $model->banner_file = isset($request_data['file']) ? $request_data['file'] : '';
+            } else if ($model->type == 'text') {
+                $model->text = isset($request_data['text']) ? $request_data['text'] : '';
+            }
         }
 
         if ($model->save()) {
+            $model->afterFind();
             echo json_encode(array(
                 'success' => 1,
-                'block' => $this->renderPartial('/constructor/simple_block', array(
-                        'model' => $model
-                    ), true)
+                'block' => $this->renderPartial('/constructor/' . ($is_catalog ? 'content_block' : 'simple_block'), array(
+                            'model' => $model
+                        ), true)
             ));
         } else {
             echo json_encode(array(
@@ -80,6 +103,7 @@ class AjaxController extends Controller
                 'errors' => $model->getErrors()
             ));
         }
+
 
         die;
     }

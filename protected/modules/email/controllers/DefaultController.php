@@ -17,6 +17,15 @@ class DefaultController extends Controller
             $model->attributes = $_POST['Letter'];
 
             if ($model->save()) {
+                $file = CUploadedFile::getInstanceByName('import_file');
+                if ($file) {
+                    try {
+                        Yii::app()->import->importFile($file, $model);
+                    } catch (ImportException $ex) {
+
+                    }
+                }
+
                 $this->redirect('/email/default/edit/' . $model->id);
             }
         }

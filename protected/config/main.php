@@ -45,6 +45,10 @@ return array(
             ),
         ),
 
+        'import' => array(
+            'class' => 'application.modules.email.components.Import.Import'
+        ),
+
 
         'db' => require(dirname(__FILE__) . '/db.php'),
 

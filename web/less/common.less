@@ -95,7 +95,30 @@ table {
   margin-bottom: 0 !important;
 }
 
-
-.nav-tabs{
+.nav-tabs {
   margin-bottom: 30px;
+}
+
+.tab-pane {
+  position: relative;
+  overflow: hidden;
+  .tab-loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #ccc;
+    z-index: 1100;
+
+    p {
+      display: block;
+      text-align: center;
+      line-height: 100px;
+      font-size: 50px;
+      color: #000;
+      margin-top: 100px;
+    }
+
+  }
 }

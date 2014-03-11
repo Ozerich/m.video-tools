@@ -15,23 +15,23 @@
             </div>
         </div>
 
-        <div class="param-banner-container" style="display:<?= $type == LetterBlock::TYPE_BANNER ? 'block' : 'none' ?>">
+        <div class="param-container param-banner-container" style="display:<?= $type == LetterBlock::TYPE_BANNER ? 'block' : 'none' ?>">
             <div class="param">
                 <label>Имя файла:</label>
-                <input type="text" class="form-control input-file"
+                <input type="text" name="file" class="form-control input-file"
                        value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->banner_file : '' ?>">
             </div>
             <div class="param">
                 <label>Ссылка:</label>
-                <input type="text" class="form-control input-url"
+                <input type="text" name="url" class="form-control input-url"
                        value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->banner_url : '' ?>">
             </div>
         </div>
 
-        <div class="param-text-container" style="display:<?= $type == LetterBlock::TYPE_TEXT ? 'block' : 'none' ?>">
+        <div class="param-container param-text-container" style="display:<?= $type == LetterBlock::TYPE_TEXT ? 'block' : 'none' ?>">
             <div class="param">
                 <textarea
-                    class="form-control input-text"><?= $type == LetterBlock::TYPE_TEXT && $model ? $model->text : '' ?></textarea>
+                    class="form-control input-text" name="text"><?= $type == LetterBlock::TYPE_TEXT && $model ? $model->text : '' ?></textarea>
             </div>
         </div>
 

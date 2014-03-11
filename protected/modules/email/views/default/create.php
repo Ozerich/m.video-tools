@@ -5,7 +5,7 @@
 
     </div>
 
-    <?php $form = $this->beginWidget('CActiveForm', array('id' => 'email-form')); ?>
+    <?php $form = $this->beginWidget('CActiveForm', array('id' => 'email-form', 'htmlOptions' => array('enctype' => 'multipart/form-data'))); ?>
     <fieldset>
         <div class="row">
             <div class="col-9 form-group">
@@ -34,6 +34,13 @@
                 <?= $form->label($model, 'images_url'); ?>
                 <?= $form->textField($model, 'images_url', array('class' => 'form-control')); ?>
                 <?= $form->error($model, 'images_url'); ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9 form-group">
+                <label>Импорт из файла:</label>
+                <input type="file" name="import_file">
             </div>
         </div>
 

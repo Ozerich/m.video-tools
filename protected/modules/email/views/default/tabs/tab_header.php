@@ -4,7 +4,7 @@
             <label>Текст сверху страницы</label>
             <input type="text" id="top_text_input" value="<?= $model->top_text ?>" class="form-control">
         </div>
-        <div class="col-12 constructor-container constructor-container-header">
+        <div class="col-12 constructor-container constructor-blocks-container constructor-container-header">
             <span>Структура:</span>
             <div class="blocks">
                 <? foreach ($model->header_blocks as $block): ?>

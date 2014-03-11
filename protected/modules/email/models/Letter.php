@@ -36,6 +36,7 @@ class Letter extends CActiveRecord
             'header_blocks' => array(self::HAS_MANY, 'LetterBlock', 'letter_id', 'scopes' => 'header'),
             'footer_blocks' => array(self::HAS_MANY, 'LetterBlock', 'letter_id', 'scopes' => 'footer'),
             'blocks' => array(self::HAS_MANY, 'LetterBlock', 'letter_id'),
+            'catalog_blocks' => array(self::HAS_MANY, 'LetterCatalogBlock', 'letter_id')
         );
     }
 
@@ -46,4 +47,24 @@ class Letter extends CActiveRecord
         );
     }
 
+    public function beforeDelete()
+    {
+        foreach (array_merge($this->blocks, $this->catalog_blocks) as $block) {
+            $block->delete();
+        }
+
+        return true;
+    }
+
+    public function beforeSave()
+    {
+        $this->stocks = serialize(empty($this->stocks) ? array() : $this->stocks);
+
+        return true;
+    }
+
+    public function afterFind()
+    {
+        $this->stocks = $this->stocks ? unserialize($this->stocks) : array();
+    }
 }

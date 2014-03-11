@@ -1,6 +1,33 @@
 var LetterHelper = {
     GetId: function () {
         return parseInt($('#letter_id').val());
+    },
+
+    UpdateContructorPositions: function ($constructor) {
+        var $blocks = $constructor.find('.block-container').not('.block-big-container.new-block-container');
+
+        $constructor.find('.block-small-container').css('clear', 'none').removeClass('block-right');
+
+        var new_in_pair = false;
+
+        for (var i = 0; i < $blocks.length - 1; i++) {
+            var pair = [$($blocks.get(i)), $($blocks.get(i + 1))];
+
+            if (pair[0].hasClass('block-small-container') && pair[1].hasClass('block-small-container')) {
+                pair[0].css('clear', 'both');
+                pair[1].addClass('block-right');
+                i++;
+
+                if (pair[0].hasClass('new-block-container') || pair[1].hasClass('new-block-container')) {
+                    new_in_pair = true;
+                }
+            }
+        }
+
+        if (new_in_pair == false) {
+            $constructor.find('.block-small-container.new-block-container').css('clear', 'both');
+        }
+
     }
 };
 
@@ -13,12 +40,19 @@ $(function () {
 
 $.fn.BlockConstructor = function (options) {
 
+
     var $constructor = $(this);
+
+    $(window).load(function () {
+        LetterHelper.UpdateContructorPositions($constructor);
+    });
 
     $constructor.on('click', '.block-container .btn-open-form', function () {
         var $block = $(this).parents('.block-container');
         $block.find('.block-preview-container').hide();
         $block.find('.form-container').show();
+
+        LetterHelper.UpdateContructorPositions($constructor);
 
         return false;
     });
@@ -26,20 +60,17 @@ $.fn.BlockConstructor = function (options) {
     $constructor.find('.form-container .param-type input').on('change', function () {
         var $form_container = $(this).parents('.form-container');
 
-        if ($form_container.find('.param-type input:checked').val() == 'banner') {
-            $form_container.find('.param-banner-container').show();
-            $form_container.find('.param-text-container').hide();
-        }
-        else {
-            $form_container.find('.param-banner-container').hide();
-            $form_container.find('.param-text-container').show();
-        }
+        var val = $form_container.find('.param-type input:checked').val();
+        $form_container.find('.param-container').hide();
+        $form_container.find('.param-' + val + '-container').show();
+
     });
 
     $constructor.on('click', '.form-container .btn-cancel', function () {
         var $block = $(this).parents('.block-container');
         $block.find('.block-preview-container').show();
         $block.find('.form-container').hide();
+
 
         return false;
     });
@@ -49,7 +80,10 @@ $.fn.BlockConstructor = function (options) {
             return false;
         }
 
-        $.post('/email/ajax/delete_block', {id: $(this).parents('.block-container').data('block-id')});
+        $.post('/email/ajax/delete_block', {
+            id: $(this).parents('.block-container').data('block-id'),
+            type: $constructor.hasClass('constructor-content-container') ? 'catalog' : 'block'
+        });
 
         $(this).parents('.block-container').slideDown(function () {
             $(this).remove();
@@ -61,25 +95,21 @@ $.fn.BlockConstructor = function (options) {
     $constructor.on('click', '.form-container .btn-submit', function () {
         var $form = $(this).parents('.block-container');
 
+        var data = {};
+
+        $form.find('.param-container:visible :input').each(function () {
+            data[$(this).attr('name')] = $(this).val();
+        });
+
         var request = {
             id: $form.data('block-id') || null,
             position: options.position,
             letter_id: LetterHelper.GetId(),
             type: $form.find('.param-type input:checked').val(),
-            data: {}
+            data: data,
+            columns: $form.hasClass('block-small-container') ? 1 : 2
         };
 
-        if (request.type == 'banner') {
-            request.data = {
-                url: $form.find('.input-url').val(),
-                file: $form.find('.input-file').val()
-            };
-        }
-        else if (request.type == 'text') {
-            request.data = {
-                text: $form.find('.input-text').val()
-            };
-        }
 
         $form.find('.block-loader').show();
 
@@ -87,21 +117,28 @@ $.fn.BlockConstructor = function (options) {
             $form.find('.block-loader').hide();
 
             data = jQuery.parseJSON(data);
-  
+
             if (data.success) {
                 $form.find('.block-preview-container').show();
                 $form.find('.form-container').hide();
 
                 if (request.id == null) {
-                    $constructor.find('.blocks').append(data.block);
+                    if (request.position == 'catalog') {
+                        $(data.block).insertBefore($constructor.find('.block-small-container.new-block-container'));
+                    }
+                    else {
+                        $constructor.find('.blocks').append(data.block);
+                    }
                 }
                 else {
                     $form.replaceWith(data.block);
                 }
             }
-            else{
+            else {
 
             }
+
+            LetterHelper.UpdateContructorPositions($constructor);
         });
 
         return false;

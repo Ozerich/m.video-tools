@@ -60,4 +60,16 @@ class LetterBlock extends CActiveRecord
         return $this->letter->images_url . $this->banner_file;
     }
 
+    public function beforeSave()
+    {
+        $this->banner_area_coords = empty($this->banner_area_coords) ? serialize($this->banner_area_coords) : null;
+
+        return true;
+    }
+
+    public function afterFind()
+    {
+        $this->banner_area_coords = $this->banner_area_coords ? unserialize($this->banner_area_coords) : null;
+    }
+
 }
