@@ -30,6 +30,7 @@ class ImportJsonParser implements ImportParserInterface
                 $stock = new ImportStock();
                 $stock->setName($footer_stock['label']);
                 $stock->setUrl($footer_stock['url']);
+
                 $letter->addStock($stock);
             }
         }

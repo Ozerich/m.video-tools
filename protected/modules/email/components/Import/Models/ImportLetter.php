@@ -32,7 +32,7 @@ class ImportLetter
 
     public function addStock(ImportStock $stock)
     {
-        $this->footer_stocks = $stock;
+        $this->footer_stocks[] = $stock;
     }
 
     /**

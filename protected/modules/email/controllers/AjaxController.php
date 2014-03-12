@@ -107,4 +107,27 @@ class AjaxController extends Controller
 
         die;
     }
+
+
+    public function actionSave_stocks()
+    {
+        $id = Yii::app()->request->getPost('letter_id');
+        $model = Letter::model()->findByPk($id);
+
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        $stocks = array();
+
+        $stocks_request = Yii::app()->request->getPost('stocks', array());
+        if ($stocks_request && is_array($stocks_request)) {
+            foreach ($stocks_request as $stock) {
+                $stocks[$stock['name']] = $stock['url'];
+            }
+        }
+
+        $model->stocks = $stocks;
+        $model->save();
+    }
 }
