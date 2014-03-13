@@ -24,8 +24,8 @@
                 </div>
             <? else: ?>
                 <div class="product-preview">
-                    <span class="product-category"><?= $model->product_category ?></span>
-                    <span class="product-model"><?= $model->product_model ?></span>
+                    <span class="product-category"><?= HtmlHelper::CodeToHtml($model->product_category) ?></span>
+                    <span class="product-model"><?= HtmlHelper::CodeToHtml($model->product_model) ?></span>
 
                     <div class="product-image">
                         <img src="<?= $model->getFullBannerUrl(); ?>">
@@ -36,13 +36,13 @@
                         <? endif; ?>
                         <span class="price"><?= $model->product_price ?></span>
                     </div>
-                    <span class="product-yellow"><?= $model->product_yellow ?></span>
+                    <span class="product-yellow"><?= HtmlHelper::CodeToHtml($model->product_yellow) ?></span>
                     <? if ($model->product_features): ?>
                         <? foreach (is_array($model->product_features) ? $model->product_features : explode("\n", $model->product_features) as $feature): ?>
-                            <li><?= $feature; ?></li>
+                            <li><?= HtmlHelper::CodeToHtml($feature); ?></li>
                         <? endforeach; ?>
                     <? endif; ?>
-                    <? if (!empty($model->product_all_url)): ?>
+                    <? if (!empty($model->product_all_url) || !empty($model->product_all_label)): ?>
                         <div class="url-all">
                             <a href="<?= $model->product_all_url ?>"
                                target="_blank"><?= $model->product_all_label ?></a>

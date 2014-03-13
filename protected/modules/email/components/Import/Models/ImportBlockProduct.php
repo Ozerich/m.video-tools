@@ -184,14 +184,18 @@ class ImportBlockProduct extends ImportBlock
         $model->columns = 1;
         $model->image = $this->getImage();
         $model->url = $this->getUrl();
-        $model->product_category = $this->getCategory();
-        $model->product_model = $this->getModel();
-        $model->product_yellow = $this->getYellow();
+        $model->product_category = $this->htmlToCode($this->getCategory());
+        $model->product_model = $this->htmlToCode($this->getModel());
+        $model->product_yellow = $this->htmlToCode($this->getYellow());
         $model->product_price = $this->getPrice();
         $model->product_old_price = $this->getOldPrice();
         $model->product_all_url = $this->getAllUrl();
         $model->product_all_label = $this->getAllLabel();
         $model->product_features = $this->getFeatures();
+
+        array_map(function ($feature) {
+            return $this->htmlToCode($feature);
+        }, $model->product_features);
 
         if (!$model->save()) {
             throw new ImportException("Ошибка сохранения блока-товара");

@@ -22,7 +22,7 @@
                     <a href="<?= $model->banner_url ?>" target="_blank"><?= $model->banner_url ?></a>
                 </div>
             <? else: ?>
-                <p><?= $model->text ?></p>
+                <p><?= HtmlHelper::CodeToHtml($model->text) ?></p>
             <? endif; ?>
         <? endif; ?>
     </div>

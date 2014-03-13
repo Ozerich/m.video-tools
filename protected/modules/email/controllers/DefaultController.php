@@ -22,7 +22,7 @@ class DefaultController extends Controller
                     try {
                         Yii::app()->import->importFile($file, $model);
                     } catch (ImportException $ex) {
-
+                        $model->delete();
                     }
                 }
 

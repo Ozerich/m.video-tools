@@ -3,5 +3,5 @@
 
 interface ImportParserInterface
 {
-    public function parseFile($filename);
+    public function parseFile($filepath);
 } 

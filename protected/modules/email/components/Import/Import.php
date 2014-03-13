@@ -8,7 +8,6 @@ class Import extends CApplicationComponent
         $model->images_url = $data->getImagesUrl();
         $model->top_text = $data->getHeaderText();
         $model->stocks = serialize($data->getFooterStocks());
-        $model->name = "Рассылка №" . $model->id;
 
         foreach ($data->getHeaderBlocks() as $block) {
             $block->saveToLetter($model, LetterBlock::POSITION_HEADER);
@@ -20,13 +19,13 @@ class Import extends CApplicationComponent
 
         $stocks = array();
         foreach ($data->getFooterStocks() as $stock) {
-            $stocks[$stock->getName()] = $stock->getUrl();
+            $stocks[strip_tags($stock->getName())] = $stock->getUrl();
         }
         $model->stocks = $stocks;
 
 
-        foreach($data->getCatalogBlocks() as $block){
-            $block->saveToLetter($model);
+        foreach ($data->getCatalogBlocks() as $block) {
+            $block->saveToLetter($model, ImportLetter::POSITION_CATALOG);
         }
 
         $model->save();
@@ -49,8 +48,13 @@ class Import extends CApplicationComponent
 
         $data = $parser->parseFile($filepath);
 
+        if ($parser instanceof ImportJsonParser) {
+            $date = mktime(0, 0, 0, substr($filename, 2, 2), substr($filename, 0, 2), substr($filename, 4, 4));
+            $model->date = date("Y-m-d", $date);
+            $model->name = 'Рассылка за ' . date("d.m.Y", $date);
+        }
 
-        $this->saveToModel($data, $model);
+        $this->saveToModel($data, $model, $filename);
 
         return true;
     }
