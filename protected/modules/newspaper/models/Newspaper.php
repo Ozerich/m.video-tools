@@ -36,4 +36,11 @@ class Newspaper extends CActiveRecord
             'pages' => array(self::HAS_MANY, 'Page', 'newspaper_id')
         );
     }
+
+    public function defaultScope()
+    {
+        return array(
+            'order' => 'date DESC'
+        );
+    }
 }

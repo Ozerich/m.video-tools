@@ -27,7 +27,12 @@ var LetterHelper = {
         if (new_in_pair == false) {
             $constructor.find('.block-small-container.new-block-container').css('clear', 'both');
         }
+    },
 
+    UpdatePreview: function () {
+        $('.viewer-container .loader').show();
+        $('.viewer-container .viewer-container-inner').hide();
+        $('.viewer-container iframe').get(0).contentWindow.location.reload(true);
     }
 };
 
@@ -35,7 +40,54 @@ $(function () {
     $('.nav-tabs a').click(function () {
         $(this).tab('show');
         return false;
-    })
+    });
+
+
+    $('.viewer-container iframe').on('load', function () {
+        $('.viewer-container .loader').hide();
+        $('.viewer-container .viewer-container-inner').show().find('.iframe-container').height($(this).get(0).contentWindow.document.body.scrollHeight);
+    });
+
+    $('.viewer-container .btn-send-preview').on('click', function () {
+        var email = $('.viewer-container .email-container input').val();
+
+        if (email.length == 0) {
+            alert('Введите e-mail');
+        }
+
+        var $btn = $(this);
+
+        $btn.prop('disabled', true).text('Отправка...');
+
+        $.post('/email/ajax/SendPreview', {id: LetterHelper.GetId(), email: email}, function () {
+            alert('Рассылка отправлена');
+            $btn.prop('disabled', false).text('Отправить');
+        });
+
+        return false;
+    });
+
+
+    $('.btn-download').on('click', function () {
+        var $btn = $(this);
+        var request = {id: LetterHelper.GetId(), regions: []};
+
+        $('.regions-container .regions input:checked').each(function () {
+            request.regions.push($(this).attr('name'));
+        });
+
+        $('.zip-link').hide();
+        $btn.prop('disabled', true).text('Создание архива...');
+
+        $.post('/email/ajax/download', request, function (response) {
+            $btn.prop('disabled', false).text('Скачать');
+            $('.zip-link').attr('href', response).show();
+        });
+
+
+
+        return false;
+    });
 });
 
 $.fn.BlockConstructor = function (options) {
@@ -83,6 +135,8 @@ $.fn.BlockConstructor = function (options) {
         $.post('/email/ajax/delete_block', {
             id: $(this).parents('.block-container').data('block-id'),
             type: $constructor.hasClass('constructor-content-container') ? 'catalog' : 'block'
+        }, function () {
+            LetterHelper.UpdatePreview();
         });
 
         $(this).parents('.block-container').slideDown(function () {
@@ -133,6 +187,8 @@ $.fn.BlockConstructor = function (options) {
                 else {
                     $form.replaceWith(data.block);
                 }
+
+                LetterHelper.UpdatePreview();
             }
             else {
 

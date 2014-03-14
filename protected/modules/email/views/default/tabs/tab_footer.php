@@ -1,4 +1,18 @@
 <fieldset>
+
+    <div class="row">
+        <div class="col-12 constructor-container constructor-blocks-container constructor-container-footer">
+            <span>Структура:</span>
+
+            <div class="blocks">
+                <? foreach ($model->footer_blocks as $block): ?>
+                    <? $this->renderPartial('/constructor/simple_block', array('model' => $block)); ?>
+                <? endforeach; ?>
+            </div>
+            <? $this->renderPartial('/constructor/simple_block', array('model' => null)); ?>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12 footer-stocks-container">
             <span>Акции:</span>
@@ -44,16 +58,12 @@
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 constructor-container constructor-blocks-container constructor-container-footer">
-            <span>Структура:</span>
 
-            <div class="blocks">
-                <? foreach ($model->footer_blocks as $block): ?>
-                    <? $this->renderPartial('/constructor/simple_block', array('model' => $block)); ?>
-                <? endforeach; ?>
-            </div>
-            <? $this->renderPartial('/constructor/simple_block', array('model' => null)); ?>
+
+    <div class="row">
+        <div class="col-12 disclaimer-container">
+            <span>Дисклеймер:</span>
+            <textarea class="form-control disclaimer-input"><?=$model->disclaimer?></textarea>
         </div>
     </div>
 </fieldset>

@@ -17,7 +17,7 @@ return array(
 
     'components' => array(
 
-        'session' => array (
+        'session' => array(
             'autoStart' => false,
         ),
 
@@ -36,8 +36,8 @@ return array(
                 'logout' => 'auth/logout',
 
                 '<module:\w+>/<controller:\w+>/<action:[0-9a-zA-Z_\-]+>/<id:\d+>' => '<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:[0-9a-zA-Z_\-]+>'          => '<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>'                                   => '<module>/<controller>/index',
+                '<module:\w+>/<controller:\w+>/<action:[0-9a-zA-Z_\-]+>' => '<module>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>' => '<module>/<controller>/index',
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>/id/<id>',
@@ -48,7 +48,6 @@ return array(
         'import' => array(
             'class' => 'application.modules.email.components.Import.Import'
         ),
-
 
         'db' => require(dirname(__FILE__) . '/db.php'),
 

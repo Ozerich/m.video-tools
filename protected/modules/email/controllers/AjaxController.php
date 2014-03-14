@@ -24,6 +24,19 @@ class AjaxController extends Controller
         $model->save();
     }
 
+    public function actionDisclaimer()
+    {
+        $id = Yii::app()->request->getPost('id');
+        $model = Letter::model()->findByPk($id);
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        $model->disclaimer = trim(Yii::app()->request->getPost('value'));
+
+        $model->save();
+    }
+
 
     public function actionDelete_block()
     {
@@ -94,8 +107,8 @@ class AjaxController extends Controller
             echo json_encode(array(
                 'success' => 1,
                 'block' => $this->renderPartial('/constructor/' . ($is_catalog ? 'content_block' : 'simple_block'), array(
-                            'model' => $model
-                        ), true)
+                        'model' => $model
+                    ), true)
             ));
         } else {
             echo json_encode(array(
@@ -129,5 +142,83 @@ class AjaxController extends Controller
 
         $model->stocks = $stocks;
         $model->save();
+    }
+
+
+    public function actionSendPreview()
+    {
+        $id = Yii::app()->request->getPost('id');
+        $model = Letter::model()->findByPk($id);
+
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        $email = Yii::app()->request->getPost('email');
+
+        $preview = $this->render('/letter/main', array('letter' => $model), true);
+
+        $headers = "From: test@ozis.by\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+        mail($email, 'Превью: ' . $model->name, $preview, $headers);
+    }
+
+
+    public function actionDownload()
+    {
+        $id = Yii::app()->request->getPost('id');
+        $model = Letter::model()->findByPk($id);
+
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        $reff = $model->reff;
+
+        $hash = md5(time());
+        $tmp_dir = realpath(__DIR__ . '/../../../../web/tmp');
+
+        $dir = $tmp_dir . '/' . $hash;
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777);
+        }
+
+        $files = array();
+
+        $regions = Yii::app()->request->getPost('regions');
+        foreach ($regions as $region) {
+            $model->reff = $reff . '_' . $region . '&cyEmail=$pers_3$';
+            $html = iconv('UTF-8', 'Windows-1251', $this->render('/letter/main', array('letter' => $model, 'region' => $region, 'encoding' => 'Windows-1251'), true));
+
+            $filename = $region . '.html';
+
+            $f = fopen($dir . '/' . $filename, 'w+');
+            fwrite($f, $html);
+            fclose($f);
+
+            $files[] = $dir . '/' . $filename;
+        }
+
+        $zip_name = date('d.m.Y', strtotime($model->date)).'.zip';
+        $zip_filepath = $tmp_dir . '/'.$zip_name;
+
+        if(file_exists($zip_filepath)){
+            @unlink($zip_filepath);
+        }
+
+        $zip = new ZipArchive;
+        if ($zip->open($zip_filepath, ZipArchive::CREATE) === true) {
+            foreach ($files as $file) {
+                $zip->addFile($file, substr($file, strrpos($file, '/') + 1));
+            }
+            $zip->close();
+        }
+
+        @unlink($dir);
+
+        echo '/web/tmp/'.$zip_name;
+        die;
     }
 }

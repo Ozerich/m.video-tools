@@ -63,4 +63,19 @@ class DefaultController extends Controller
 
         $this->render('edit', array('model' => $model, 'active_tab' => Yii::app()->request->getParam('tab', 1)));
     }
+
+
+    public function actionPreview($id)
+    {
+        $model = Letter::model()->findByPk($id);
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        $this->layout = 'none';
+
+        $this->render('/letter/main', array(
+            'letter' => $model
+        ));
+    }
 }

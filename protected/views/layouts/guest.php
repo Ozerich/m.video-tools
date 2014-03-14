@@ -15,9 +15,11 @@
 </head>
 
 <body class="no-auth">
-<header>
-    <a href="/" class="brand"><img src="/web/img/mvideo.png"></a>
-</header>
-<?= $content ?>
+<div class="page-container">
+    <header>
+        <a href="/" class="brand"><img src="/web/img/mvideo.png"></a>
+    </header>
+    <?= $content ?>
+</div>
 </body>
 </html>

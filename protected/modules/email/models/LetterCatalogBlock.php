@@ -54,7 +54,7 @@ class LetterCatalogBlock extends CActiveRecord
     }
 
 
-    public function getFullBannerUrl()
+    public function getFullImageUrl()
     {
         return $this->letter->images_url . $this->image;
     }

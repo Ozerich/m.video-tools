@@ -1,7 +1,7 @@
 $(function () {
 
 
-    var $container = $('#tab_footer').find('.footer-stocks-container');
+    var $container = $('#tab_footer');
 
     function updateStockArrows() {
         $container.find('tbody tr').not('.new-stock').find('.btn-stock-up, .btn-stock-down').show();
@@ -50,10 +50,22 @@ $(function () {
         $.post('/email/ajax/save_stocks', {
             letter_id: LetterHelper.GetId(),
             stocks: stocks
+        }, function(){
+            LetterHelper.UpdatePreview();
         });
 
         alert('Акции сохранены');
 
         return false;
+    });
+
+
+    $container.find('.disclaimer-input').on('change', function () {
+        $.post('/email/ajax/disclaimer', {
+            id: LetterHelper.GetId(),
+            value: $(this).val()
+        }, function(){
+            LetterHelper.UpdatePreview();
+        });
     });
 });

@@ -17,7 +17,7 @@
                 </div>
             </div>
             <? if ($model->type == LetterBlock::TYPE_BANNER): ?>
-                <img src="<?= $model->getFullBannerUrl(); ?>">
+                <img src="<?= $model->getFullImageUrl(); ?>">
                 <div class="param-url">
                     <label>Ссылка на:</label>
                     <a href="<?= $model->url ?>" target="_blank"><?= $model->url ?></a>
@@ -28,7 +28,7 @@
                     <span class="product-model"><?= HtmlHelper::CodeToHtml($model->product_model) ?></span>
 
                     <div class="product-image">
-                        <img src="<?= $model->getFullBannerUrl(); ?>">
+                        <img src="<?= $model->getFullImageUrl(); ?>">
                     </div>
                     <div class="prices-container">
                         <? if ($model->product_old_price): ?>

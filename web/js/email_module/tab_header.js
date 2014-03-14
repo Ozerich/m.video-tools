@@ -5,6 +5,8 @@ $(function () {
         $.post('/email/ajax/top_text', {
             id: LetterHelper.GetId(),
             value: $(this).val()
+        }, function(){
+            LetterHelper.UpdatePreview();
         });
     });
 });
