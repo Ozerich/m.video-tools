@@ -91,15 +91,28 @@ class AjaxController extends Controller
 
         } else {
             $model->position = Yii::app()->request->getPost('position');
-
             $model->text = $model->banner_url = $model->banner_file = '';
+
+
+            $model_areas = array();
 
             if ($model->type == 'banner') {
                 $model->banner_url = isset($request_data['url']) ? $request_data['url'] : '';
                 $model->banner_file = isset($request_data['file']) ? $request_data['file'] : '';
+
+                $areas = Yii::app()->request->getPost('banner_areas', array());
+                if ($areas) {
+                    $model->banner_url = '';
+                    foreach ($areas as $area) {
+                        $model_areas[$area['coords']] = $area['url'];
+                    }
+                }
+
             } else if ($model->type == 'text') {
                 $model->text = isset($request_data['text']) ? $request_data['text'] : '';
             }
+
+            $model->banner_area_coords = $model_areas;
         }
 
         if ($model->save()) {
@@ -201,10 +214,10 @@ class AjaxController extends Controller
             $files[] = $dir . '/' . $filename;
         }
 
-        $zip_name = date('d.m.Y', strtotime($model->date)).'.zip';
-        $zip_filepath = $tmp_dir . '/'.$zip_name;
+        $zip_name = date('d.m.Y', strtotime($model->date)) . '.zip';
+        $zip_filepath = $tmp_dir . '/' . $zip_name;
 
-        if(file_exists($zip_filepath)){
+        if (file_exists($zip_filepath)) {
             @unlink($zip_filepath);
         }
 
@@ -218,7 +231,7 @@ class AjaxController extends Controller
 
         @unlink($dir);
 
-        echo '/web/tmp/'.$zip_name;
+        echo '/web/tmp/' . $zip_name;
         die;
     }
 }

@@ -146,7 +146,7 @@ class HtmlHelper
     }
 
 
-    public static function Image($url, $alt = '', $css_options = array())
+    public static function Image($url, $alt = '', $css_options = array(), $map = null)
     {
         foreach ($css_options as $option => &$value) {
             $value = $option . ':' . $value;
@@ -159,7 +159,7 @@ class HtmlHelper
             return '';
         }
 
-        return '<img ' . ($css_options ? 'style="' . $css_options . '"' : '') . ' width="' . $size[0] . '" height="' . $size[1] . '" vspace="0" hspace="0" border="0" src="' . $url . '" alt="' . trim($alt) . '">';
+        return '<img ' . ($map ? 'usemap="#' . $map . '" ' : '') . ($css_options ? 'style="' . $css_options . '"' : '') . ' width="' . $size[0] . '" height="' . $size[1] . '" vspace="0" hspace="0" border="0" src="' . $url . '" alt="' . trim($alt) . '">';
     }
 
     public static function Banner($file, $url = null, $areas = array())
@@ -169,7 +169,22 @@ class HtmlHelper
         }
 
         $banner_src = self::$images_url . $file;
-        $img = self::Image($banner_src);
+
+        if (!empty($areas)) {
+
+            $img_id = "img_" . (rand() % 100000);
+
+            $result = self::Image($banner_src, '', array(), $img_id);
+            $result .= '<map id="' . $img_id . '" name="' . $img_id . '">';
+            foreach ($areas as $coords => $url) {
+                $result .= '<area target="_blank" alt="" href="' . self::prepare_url($url) . '" shape="rect" coords="' . $coords . '"/>';
+            }
+            $result .= '</map>';
+
+            return $result;
+        } else {
+            $img = self::Image($banner_src);
+        }
 
         if (!$url && empty($areas)) {
             return $img;

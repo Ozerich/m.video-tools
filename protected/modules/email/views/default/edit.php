@@ -1,6 +1,8 @@
+<script src="/web/js/vendors/jquery.imgareaselect.js"></script>
 <script src="/web/js/email_module/ui.js"></script>
 <script src="/web/js/email_module/tab_header.js"></script>
 <script src="/web/js/email_module/tab_footer.js"></script>
+
 
 <div id="page_email_edit">
 

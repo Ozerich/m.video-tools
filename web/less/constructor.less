@@ -1,6 +1,6 @@
 .constructor-container {
 
-  >span{
+  > span {
     margin: 15px 10px;
     font-size: 150%;
   }
@@ -74,8 +74,8 @@
           }
         }
 
-        .param-type {
-          margin-bottom: 15px;
+        .param-radio {
+          margin: 8px 0;
           .param-input {
             label {
               margin: 0 15px 0 10px;
@@ -83,6 +83,62 @@
             }
           }
         }
+
+        .param-banner-container {
+
+          .image-container {
+            text-align: center;
+            margin: 15px 0;
+            img {
+            }
+          }
+
+          .banner-form-container {
+            margin: 15px 0 15px 150px;
+            overflow: hidden;
+            button {
+              float: left;
+              margin: 28px 0 0 5px;
+            }
+            .param {
+              float: left;
+              label {
+                display: block;
+              }
+              &.param-coords {
+                width: 150px;
+                float: left;
+                input {
+                  text-align: center;
+                }
+              }
+              &.param-url {
+                width: 350px;
+                margin-left: 10px;
+              }
+            }
+          }
+
+          ul {
+            width: 400px;
+            margin: 0 auto;
+            li{
+              overflow: hidden;
+              > a{
+                float: left;
+                color: blue;
+              }
+              .actions{
+                float: right;
+                width: 70px;
+                a{
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+
       }
 
       .form-buttons {
@@ -100,6 +156,7 @@
           float: right;
         }
       }
+
     }
   }
 
@@ -134,7 +191,7 @@
     .product-preview {
       padding: 10px 20px;
 
-      a{
+      a {
         color: #0076d0;
       }
 
@@ -168,7 +225,7 @@
         background: yellow;
         text-align: center;
       }
-      .url-all{
+      .url-all {
         display: block;
         text-transform: uppercase;
         text-align: center;

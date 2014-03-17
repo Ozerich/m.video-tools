@@ -18,8 +18,15 @@
             <? if ($model->type == LetterBlock::TYPE_BANNER): ?>
                 <img src="<?= $model->getFullBannerUrl(); ?>">
                 <div class="param-url">
+                    <? if($model->isSimple()): ?>
                     <label>Ссылка на:</label>
                     <a href="<?= $model->banner_url ?>" target="_blank"><?= $model->banner_url ?></a>
+                    <? else: ?>
+                        <label>Ссылки на:</label>
+                        <? foreach($model->banner_area_coords as $url): ?>
+                            <a href="<?= $url ?>" target="_blank"><?= $url ?></a>
+                        <? endforeach; ?>
+                    <? endif; ?>
                 </div>
             <? else: ?>
                 <p><?= HtmlHelper::CodeToHtml($model->text) ?></p>
