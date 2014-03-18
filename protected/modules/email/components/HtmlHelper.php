@@ -11,6 +11,11 @@ class HtmlHelper
         self::$images_url = $images_url;
     }
 
+    public static function GetCabinetUrl()
+    {
+        return 'http://www.mvideo.ru/cabinet/';
+    }
+
     public static function download($url)
     {
         $curl = curl_init($url);
@@ -146,26 +151,40 @@ class HtmlHelper
     }
 
 
-    public static function Image($url, $alt = '', $css_options = array(), $map = null)
+    public static function Image($url, $alt = '', $css_options = array(), $map = null, &$sizes = array())
     {
         foreach ($css_options as $option => &$value) {
             $value = $option . ':' . $value;
         }
         $css_options = implode(';', $css_options);
 
-        $size = self::get_image_size($url);
+        $sizes = self::get_image_size($url);
 
-        if (!$size) {
+        if (!$sizes) {
             return '';
         }
 
-        return '<img ' . ($map ? 'usemap="#' . $map . '" ' : '') . ($css_options ? 'style="' . $css_options . '"' : '') . ' width="' . $size[0] . '" height="' . $size[1] . '" vspace="0" hspace="0" border="0" src="' . $url . '" alt="' . trim($alt) . '">';
+        return '<img ' . ($map ? 'usemap="#' . $map . '" ' : '') . ($css_options ? 'style="' . $css_options . '"' : '') . ' width="' . $sizes[0] . '" height="' . $sizes[1] . '" vspace="0" hspace="0" border="0" src="' . $url . '" alt="' . trim($alt) . '">';
     }
 
     public static function Banner($file, $url = null, $areas = array())
     {
         if ($url) {
             $url = self::prepare_url($url);
+        }
+
+        if (strpos($file, ';') !== false) {
+            $files = explode(';', $file);
+            $result = '<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>';
+            foreach ($files as $ind => $file) {
+                $sizes = array();
+                $img = self::Image(self::$images_url . trim($file), '', array(), null, $sizes);
+
+                $result .= '<td valign="top" style="vertical-align: top">' . ($url ? self::Link($url, $img) : $img) . "</td>";
+            }
+            $result .= '</tr></table>';
+
+            return $result;
         }
 
         $banner_src = self::$images_url . $file;

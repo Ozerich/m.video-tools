@@ -202,10 +202,10 @@ class AjaxController extends Controller
 
         $regions = Yii::app()->request->getPost('regions');
         foreach ($regions as $region) {
-            $model->reff = $reff . '_' . $region . '&cyEmail=$pers_3$';
+            $model->reff = $reff . ($region ? '_' . $region : '') . '&cyEmail=$pers_3$';
             $html = iconv('UTF-8', 'Windows-1251', $this->render('/letter/main', array('letter' => $model, 'region' => $region, 'encoding' => 'Windows-1251'), true));
 
-            $filename = $region . '.html';
+            $filename = ($region ? $region : 'no_region') . '.html';
 
             $f = fopen($dir . '/' . $filename, 'w+');
             fwrite($f, $html);

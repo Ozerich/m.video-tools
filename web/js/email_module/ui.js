@@ -87,6 +87,11 @@ $(function () {
 
         return false;
     });
+
+    $('.zip-link').on('click', function(){
+        $(this).hide();
+        return true;
+    });
 });
 
 $.fn.BlockConstructor = function (options) {

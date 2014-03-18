@@ -55,14 +55,27 @@ class LetterBlock extends CActiveRecord
     }
 
 
-    public function getFullBannerUrl()
+    public function getFullBannerUrl($single = false)
     {
-        return $this->letter->images_url . $this->banner_file;
+        if (empty($this->banner_file)) {
+            return '';
+        }
+
+        if (strpos($this->banner_file, ';') === false) {
+            return $this->letter->images_url . $this->banner_file;
+        }
+
+        $urls = explode(';', $this->banner_file);
+        foreach ($urls as &$url) {
+            $url = $this->letter->images_url . $url;
+        }
+
+        return $single ? array_shift($urls) : $urls;
     }
 
     public function beforeSave()
     {
-        $this->banner_area_coords =  serialize(empty($this->banner_area_coords) ? array() : $this->banner_area_coords);
+        $this->banner_area_coords = serialize(empty($this->banner_area_coords) ? array() : $this->banner_area_coords);
 
         return true;
     }
@@ -75,5 +88,27 @@ class LetterBlock extends CActiveRecord
     public function isSimple()
     {
         return empty($this->banner_area_coords);
+    }
+
+
+    public function getBlockName()
+    {
+        if ($this->type == self::TYPE_TEXT) {
+            return 'Текстовый блок';
+        }
+
+        if (!empty($this->banner_area_coords)) {
+            return 'Баннер с несколькими ссылками';
+        }
+
+        if (empty($this->banner_url)) {
+            return 'Баннер';
+        }
+
+        if (strpos($this->banner_file, ';') !== false) {
+            return 'Баннер из нескольких картинок';
+        }
+
+        return 'Баннер-ссылка';
     }
 }

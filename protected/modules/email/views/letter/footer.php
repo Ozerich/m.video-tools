@@ -221,11 +221,11 @@ if ($blocks): ?>
         <? endif; ?>
 
         <? $texts = array(
-            'Если вы не хотите больше получать информацию об акциях и скидках, пожалуйста, пройдите по ' . HtmlHelper::Link('http://www.mvideo.ru/cabinet/subscription_emarsys.php?act=unsubscribe&bonuserid=$Bonus Member ID$&userid=$Online User ID$&email=$E-Mail$&subid[]=4',
+            'Если вы не хотите больше получать информацию об акциях и скидках, пожалуйста, пройдите по ' . HtmlHelper::Link('http://www.mvideo.ru/cabinet/subscription_emarsys.php?act=unsubscribe&bonuserid=$Bonus Member ID$&userid=$Online User ID$&email=$E-Mail$&subid[]=3',
                 HtmlHelper::Font('ссылке', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
 
             'Если вы получили это письмо от друга и желаете получать новости от &quot;М.Видео&quot;,<br/> пожалуйста, ' .
-            HtmlHelper::Link('http://www.mvideo.ru/cabinet/', HtmlHelper::Font('подпишитесь на рассылку новостей', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
+            HtmlHelper::Link(HtmlHelper::GetCabinetUrl(), HtmlHelper::Font('подпишитесь на рассылку новостей', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
 
             'Чтобы регулярно и без проблем получать рассылку новостей от «М.Видео», пожалуйста,<br/> добавьте адрес ' .
             HtmlHelper::Link('mailto:noreply@sender.mvideo.ru', HtmlHelper::Font('noreply@sender.mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true))) . ' в свою адресную книгу.',

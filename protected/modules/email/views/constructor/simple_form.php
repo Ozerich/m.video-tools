@@ -48,7 +48,7 @@
             <div class="param-banner-container param-banner-areas-container"
                  style="display:  <?= $model && !$model->isSimple() ? 'block' : 'none'; ?>">
                 <div class="image-container">
-                    <img src="<?= $model ? $model->getFullBannerUrl() : ''; ?>">
+                    <img src="<?= $model ? $model->getFullBannerUrl(true) : ''; ?>">
                 </div>
                 <div class="banner-form-container" style="display: none">
                     <div class="param param-coords">

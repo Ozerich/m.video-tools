@@ -2,14 +2,16 @@
     <table width="638" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" class="pad_null"
            style="border-left: 1px solid #CACACA; border-right:1px solid #cacaca; margin: 0 auto;">
         <tbody>
+        <? $blocks = $letter->catalog_blocks;
+        if ($blocks): ?>
         <tr>
-            <td style="border-bottom: 1px solid #cacaca;">
+            <td>
                 <center>
                     <table width="556" cellspacing="0" cellpadding="0" border="0"
                            style="text-align: left; margin: 0 auto;">
                         <? $ind = 0;
-                        $blocks = $letter->catalog_blocks;
-                        if ($blocks): foreach ($blocks as $block): ?>
+
+                        foreach ($blocks as $block): ?>
 
                             <? if ($ind % 2 == 0): ?>
                                 <tr>
@@ -38,13 +40,14 @@
                                     </td>
                                 </tr>
                             <? endif; ?>
-                            <? $ind++; endforeach; endif; ?>
+                            <? $ind++; endforeach; ?>
                     </table>
                 </center>
             </td>
         </tr>
+        <? endif; ?>
         <tr>
-            <td>
+            <td style="border-top: 1px solid #cacaca;">
                 <? HtmlHelper::PrintSpacer(0, 38); ?>
             </td>
         </tr>

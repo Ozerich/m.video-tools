@@ -4,11 +4,11 @@
 
         <div class="regions">
             <? $regions = array(
-                'MI', 'MI+B', 'RI', 'RI+B'
+                '', 'MI', 'MI+B', 'RI', 'RB', 'RI+B', 'std_RI', 'new_RI',
             ); ?>
             <? foreach ($regions as $ind => $region): ?>
-                <label for="region_<?= $ind ?>"><input type="checkbox" name="<?= $region ?>" checked
-                                                       id="region_<?= $ind ?>"> <?= $region ?></label>
+                <label for="region_<?= $ind ?>"><input type="checkbox" name="<?= $region ?>" <?=$region ? '' : 'checked'?>
+                                                       id="region_<?= $ind ?>"> <?= $region ? $region : 'Без регионов' ?></label>
             <? endforeach; ?>
         </div>
         <button class="btn btn-mini btn-success btn-download">Скачать</button>
