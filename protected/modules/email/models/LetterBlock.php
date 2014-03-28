@@ -20,7 +20,9 @@ class LetterBlock extends CActiveRecord
 
     public function rules()
     {
-        return array();
+        return array(
+            array('position, priority, type, banner_file, banner_url, banner_area_coords, text', 'safe')
+        );
     }
 
     public function attributeLabels()

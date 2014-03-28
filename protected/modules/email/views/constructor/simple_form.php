@@ -46,7 +46,7 @@
             </div>
 
             <div class="param-banner-container param-banner-areas-container"
-                 style="display:  <?= $model && !$model->isSimple() ? 'block' : 'none'; ?>">
+                 style="display:  <?= !$model || $model->isSimple() ? 'none' : 'block'; ?>">
                 <div class="image-container">
                     <img src="<?= $model ? $model->getFullBannerUrl(true) : ''; ?>">
                 </div>

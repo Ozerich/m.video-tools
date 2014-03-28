@@ -69,7 +69,7 @@
                         <td class="cell-count"><?=count($page->regions);?></td>
                         <td class="cell-actions">
                             <a class="btn btn-small btn-info"
-                               href="/newspaper/default/pages/<?= $model->id ?>/?page=<?= $page->id ?>">Ссылки</a>
+                               href="/newspaper/pages/view/<?= $model->id ?>/?page=<?= $page->id ?>">Ссылки</a>
                             <a class="btn btn-small btn-danger action-delete"
                                href="/newspaper/default/delete_page/<?= $page->id ?>">Удалить</a>
                         </td>

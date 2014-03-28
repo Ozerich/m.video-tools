@@ -28,27 +28,28 @@ class DefaultController extends Controller
                     $page->save();
                 }
 
-                $this->redirect('/default/edit/'.$model->id);
+                $this->redirect('/newspaper/default/edit/' . $model->id);
             }
 
         }
 
         $this->render('create', array('model' => $model, 'pages_count' => Yii::app()->request->isPostRequest ? $_POST['pages_count'] : 8));
     }
-	
-	public function actionAdd_page($id){
-		$model = Newspaper::model()->findByPk($id);
+
+    public function actionAdd_page($id)
+    {
+        $model = Newspaper::model()->findByPk($id);
         if (!$model) {
             throw new CHttpException(404);
         }
-		
-		$page = new Page;
-		$page->newspaper_id = $model->id;
-		$page->num = count($model->pages) + 1;
-		$page->save();
-	
-		$this->redirect('/default/edit/'.$id);
-	}
+
+        $page = new Page;
+        $page->newspaper_id = $model->id;
+        $page->num = count($model->pages) + 1;
+        $page->save();
+
+        $this->redirect('/newspaper/default/edit/' . $id);
+    }
 
 
     public function actionDelete($id)
@@ -57,7 +58,7 @@ class DefaultController extends Controller
         if ($model) {
             $model->delete();
         }
-        $this->redirect('/');
+        $this->redirect('/newspaper/');
     }
 
 
@@ -71,7 +72,7 @@ class DefaultController extends Controller
         if (Yii::app()->request->isPostRequest) {
             $model->attributes = $_POST['Newspaper'];
             if ($model->save()) {
-                $this->redirect('/');
+                $this->redirect('/newspaper/');
             }
         }
 
@@ -159,5 +160,19 @@ class DefaultController extends Controller
         set_time_limit(0);
         readfile($_SERVER['DOCUMENT_ROOT'] . '/html.tpl');
         unlink($_SERVER['DOCUMENT_ROOT'] . '/html.tpl');
+    }
+
+
+    public function actionCopy($id)
+    {
+        $model = Newspaper::model()->findByPk($id);
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        $new_model = new Newspaper();
+        $new_model->copyFrom($model);
+
+        $this->redirect('/newspaper/default/edit/' . $new_model->id);
     }
 }

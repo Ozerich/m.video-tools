@@ -28,6 +28,7 @@
                     <a href="/newspaper/default/edit/<?= $newsparer->id ?>" class="btn btn-small btn-success">Редактировать</a>
                     <a onclick="return confirm('Вы уверены что хотите удалить газету?');"
                        href="/newspaper/default/delete/<?= $newsparer->id ?>" class="btn btn-small btn-danger">Удалить</a>
+                    <a href="/newspaper/default/copy/<?=$newsparer->id?>" class="btn btn-small btn-info">Копировать</a>
                 </td>
             </tr>
         <? endforeach; ?>

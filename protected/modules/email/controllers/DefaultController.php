@@ -17,12 +17,21 @@ class DefaultController extends Controller
             $model->attributes = $_POST['Letter'];
 
             if ($model->save()) {
-                $file = CUploadedFile::getInstanceByName('import_file');
-                if ($file) {
-                    try {
-                        Yii::app()->import->importFile($file, $model);
-                    } catch (ImportException $ex) {
-                        $model->delete();
+
+
+                if (isset($_POST['copy_from']) && $_POST['copy_from']) {
+                    $other_model = Letter::model()->findByPk($_POST['copy_from']);
+                    if ($other_model) {
+                        $model->copyFrom($other_model);
+                    }
+                } else {
+                    $file = CUploadedFile::getInstanceByName('import_file');
+                    if ($file) {
+                        try {
+                            Yii::app()->import->importFile($file, $model);
+                        } catch (ImportException $ex) {
+                            $model->delete();
+                        }
                     }
                 }
 

@@ -43,4 +43,18 @@ class Newspaper extends CActiveRecord
             'order' => 'date DESC'
         );
     }
+
+
+    public function copyFrom(Newspaper $model)
+    {
+        $this->attributes = $model->attributes;
+        $this->save();
+
+        foreach($model->pages as $page){
+            $new_page = new Page();
+            $new_page->copyFrom($page);
+            $new_page->newspaper_id = $this->id;
+            $new_page->save();
+        }
+    }
 }

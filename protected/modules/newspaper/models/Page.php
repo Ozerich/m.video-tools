@@ -50,4 +50,17 @@ class Page extends CActiveRecord
             'order' => 'num ASC',
         );
     }
+
+    public function copyFrom(Page $model)
+    {
+        $this->attributes = $model->attributes;
+        $this->save();
+
+        foreach($model->regions as $region){
+            $new_region = new Region();
+            $new_region->attributes = $region->attributes;
+            $new_region->page_id = $this->id;
+            $new_region->save();
+        }
+    }
 }

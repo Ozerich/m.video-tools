@@ -15,7 +15,7 @@ class Letter extends CActiveRecord
     public function rules()
     {
         return array(
-            array('name, reff,date,top_text,images_url', 'safe')
+            array('name, reff,date,top_text,images_url, disclaimer', 'safe')
         );
     }
 
@@ -26,7 +26,8 @@ class Letter extends CActiveRecord
             'reff' => 'Рефф',
             'date' => 'Дата рассылки',
             'top_text' => 'Текст вверху страницы',
-            'images_url' => 'URL к папке с картинками'
+            'images_url' => 'URL к папке с картинками',
+            'disclaimer' => 'Дисклеймер',
         );
     }
 
@@ -66,5 +67,33 @@ class Letter extends CActiveRecord
     public function afterFind()
     {
         $this->stocks = $this->stocks ? unserialize($this->stocks) : array();
+    }
+
+
+    public function copyFrom(Letter $model)
+    {
+        foreach ($model->blocks as $block) {
+            $new = new LetterBlock();
+            $new->attributes = $block->attributes;
+            $new->id = null;
+            $new->letter_id = $this->id;
+            $new->save();
+        }
+
+        foreach ($model->catalog_blocks as $block) {
+            $new = new LetterCatalogBlock();
+            $new->attributes = $block->attributes;
+            $new->id = null;
+            $new->letter_id = $this->id;
+            $new->save();
+        }
+
+        $this->stocks = $model->stocks;
+        $this->top_text = $model->top_text;
+        $this->disclaimer = $model->disclaimer;
+        $this->images_url = $model->images_url;
+        $this->date = $model->date;
+        $this->reff = $model->reff;
+        $this->save();
     }
 }

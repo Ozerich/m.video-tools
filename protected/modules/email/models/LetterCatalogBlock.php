@@ -17,7 +17,9 @@ class LetterCatalogBlock extends CActiveRecord
 
     public function rules()
     {
-        return array();
+        return array(
+            array('priority, type, columns, image, url, product_category, product_model, product_yellow, product_price, product_old_price, product_features, product_all_url, product_all_label', 'safe')
+        );
     }
 
     public function attributeLabels()

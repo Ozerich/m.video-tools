@@ -46,6 +46,18 @@ class HtmlHelper
         $code = str_replace("\n", "<br>", $code);
 
         $code = preg_replace('#\[bold\](.+?)\[/bold\]#sui', '<b>\\1</b>', $code);
+        $code = preg_replace('#\[center\](.+?)\[/center\]#sui', '<center>\\1</center>', $code);
+        $code = preg_replace_callback('#\[size (\d+)\](.+?)\[/size\]#sui', function($matches){
+            return self::Font($matches[2], array('size' => $matches[1]));
+        }, $code);
+
+        if (preg_match_all('#\[url="*(.+?)"*\](.+?)\[/url\]#sui', $code, $links, PREG_SET_ORDER)) {
+            foreach ($links as $link) {
+                $code = str_replace($link[0], self::Link($link[1], self::Font($link[2], array('color' => '#ed1c29'))), $code);
+            }
+        };
+
+
 
         return $code;
     }
@@ -132,7 +144,7 @@ class HtmlHelper
 
         if (substr($url, strlen($url) - strlen($reff)) != $reff) {
 
-            $url = trim(preg_replace('#[(?&)]reff\=.*?[?&$]#sui', '\\1', $url));
+            $url = trim(preg_replace('#([?&])reff\=.*?[?&$]#sui', '\\1', $url));
 
             $last_symbol = substr($url, strlen($url) - 1);
             if ($last_symbol == '?' || $last_symbol == '&') {
@@ -142,6 +154,7 @@ class HtmlHelper
             $url .= strpos($url, '?') ? '&' : '?';
             $url .= $reff;
         }
+
         return $url;
     }
 

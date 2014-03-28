@@ -39,6 +39,18 @@
 
         <div class="row">
             <div class="col-9 form-group">
+                <label>Копировать из:</label>
+                <select class="form-control" name="copy_from">
+                    <option value="0" selected>Не копировать</option>
+                    <? foreach (Letter::model()->findAll() as $letter): ?>
+                        <option value="<?= $letter->id ?>"><?= $letter->name ?></option>
+                    <? endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9 form-group">
                 <label>Импорт из файла:</label>
                 <input type="file" name="import_file">
             </div>
