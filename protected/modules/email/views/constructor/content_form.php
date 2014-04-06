@@ -56,11 +56,11 @@
             </div>
             <div class="param">
                 <label>Адрес ссылки под товаром:</label>
-                <input type="text" class="form-control" name="product_all_url" value="<?= $model ? $model->product_all_url : '' ?>">
+                <input type="text" class="form-control" name="all_url" value="<?= $model ? $model->product_all_url : '' ?>">
             </div>
             <div class="param">
                 <label>Текст ссылки под товаром:</label>
-                <input type="text" class="form-control" name="product_all_label" value="<?= $model ? $model->product_all_label : '' ?>">
+                <input type="text" class="form-control" name="all_label" value="<?= $model ? $model->product_all_label : '' ?>">
             </div>
         </div>
 

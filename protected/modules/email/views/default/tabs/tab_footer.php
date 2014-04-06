@@ -16,46 +16,18 @@
     <div class="row">
         <div class="col-12 footer-stocks-container">
             <span>Акции:</span>
-            <table>
-                <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Ссылка</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="display: none" class="new-stock">
-                    <td class="cell-name"><input type="text" class="form-control" value=""></td>
-                    <td class="cell-url"><input type="text" class="form-control" value=""></td>
-                    <td class="cell-actions">
-                        <a href="#" class="glyphicon glyphicon-arrow-up btn-stock-up"></a>
-                        <a href="#" class="glyphicon glyphicon-arrow-down btn-stock-down"></a>
-                        <a href="#" class="glyphicon glyphicon-remove btn-stock-remove"></a>
-                    </td>
-                </tr>
-                <? foreach ($model->stocks as $stock_name => $stock_url): ?>
-                    <tr>
-                        <td class="cell-name"><input type="text" class="form-control" value="<?= $stock_name ?>">
-                        </td>
-                        <td class="cell-url"><input type="text" class="form-control" value="<?= $stock_url ?>"></td>
-                        <td class="cell-actions">
-                            <a href="#" class="glyphicon glyphicon-arrow-up btn-stock-up"></a>
-                            <a href="#" class="glyphicon glyphicon-arrow-down btn-stock-down"></a>
-                            <a href="#" class="glyphicon glyphicon-remove btn-stock-remove"></a>
-                        </td>
-                    </tr>
+
+            <div class="stocks">
+                <? foreach ($model->stocks as $stock): ?>
+                    <? $this->renderPartial('/default/tabs/footer/_stock', array('stock' => $stock)); ?>
                 <? endforeach; ?>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <a href="#" class="btn btn-mini btn-success btn-add-stock">Добавить акцию</a>
-                        <a href="#" class="btn btn-mini btn-primary btn-save-stocks">Сохранить акции</a>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>
+            </div>
+
+            <? $this->renderPartial('/default/tabs/footer/_stock', array('stock' => new LetterStock())); ?>
+
+            <div class="add-btn-container">
+                <a href="#" class="btn btn-mini btn-primary btn-add">Добавить акцию</a>
+            </div>
         </div>
     </div>
 
@@ -63,7 +35,7 @@
     <div class="row">
         <div class="col-12 disclaimer-container">
             <span>Дисклеймер:</span>
-            <textarea class="form-control disclaimer-input"><?=$model->disclaimer?></textarea>
+            <textarea class="form-control disclaimer-input"><?= $model->disclaimer ?></textarea>
         </div>
     </div>
 </fieldset>

@@ -45,6 +45,7 @@ class LetterCatalogBlock extends CActiveRecord
     public function beforeSave()
     {
         $this->product_features = serialize($this->product_features ? $this->product_features : array());
+        $this->area_coords = serialize(empty($this->area_coords) ? array() : $this->area_coords);
 
         return true;
     }
@@ -53,6 +54,8 @@ class LetterCatalogBlock extends CActiveRecord
     {
         $this->product_features = unserialize($this->product_features);
         $this->product_features = $this->product_features ? $this->product_features : array();
+
+        $this->area_coords = $this->area_coords ? unserialize($this->area_coords) : array();
     }
 
 
@@ -71,4 +74,12 @@ class LetterCatalogBlock extends CActiveRecord
         return strpos($this->url, 'http://') !== false ? $this->url : 'http://www.mvideo.ru/products/' . $this->url . '.html';
     }
 
+
+    public function getUtmContent($suffix)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->condition = '`letter_id` = '.$this->letter_id.' AND `id` < '.$this->id;
+        $line = ceil((self::model()->count($criteria) + 1) / 2);
+        return 'a_'.$line.'product_'.$this->url.'_'.$suffix;
+    }
 }

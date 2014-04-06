@@ -19,7 +19,7 @@
 
                             <? if ($block->type == LetterCatalogBlock::TYPE_BANNER): ?>
                                 <td colspan="3">
-                                    <?= HtmlHelper::Banner($block->image, $block->url); ?>
+                                    <?= HtmlHelper::Banner($block->image, $block->url, $block->utm_content); ?>
                                 </td>
                                 <? $ind++; ?>
                             <? else: ?>
@@ -47,7 +47,7 @@
         </tr>
         <? endif; ?>
         <tr>
-            <td style="border-top: 1px solid #cacaca;">
+            <td>
                 <? HtmlHelper::PrintSpacer(0, 38); ?>
             </td>
         </tr>

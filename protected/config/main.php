@@ -21,6 +21,11 @@ return array(
             'autoStart' => false,
         ),
 
+        'decoda' => array(
+            'class' => 'ext.decoda.YiiDecoda',
+            'defaults' => true,
+        ),
+
         'user' => array(
             'class' => 'WebUser',
             'loginUrl' => array('/login'),

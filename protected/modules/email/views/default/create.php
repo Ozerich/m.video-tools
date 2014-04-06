@@ -22,10 +22,15 @@
         </div>
 
         <div class="row">
-            <div class="col-9 form-group">
+            <div class="col-6 form-group">
                 <?= $form->label($model, 'reff'); ?>
                 <?= $form->textField($model, 'reff', array('class' => 'form-control')); ?>
                 <?= $form->error($model, 'reff'); ?>
+            </div>
+            <div class="col-6 form-group">
+                <?= $form->label($model, 'utm_campaign'); ?>
+                <?= $form->textField($model, 'utm_campaign', array('class' => 'form-control')); ?>
+                <?= $form->error($model, 'utm_campaign'); ?>
             </div>
         </div>
 

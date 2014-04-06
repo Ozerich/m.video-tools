@@ -9,7 +9,7 @@
 <? $blocks = $letter->footer_blocks;
 if ($blocks): ?>
     <tr>
-        <td align="center" style="text-align: center">
+        <td align="center" style="text-align: center; border-bottom: 1px solid #cacaca;">
             <center>
                 <table cellpadding="0" cellspacing="0" border="0">
                     <tr>
@@ -21,7 +21,7 @@ if ($blocks): ?>
                                             <? if ($block->type == LetterBlock::TYPE_TEXT): ?>
                                                 <?= HtmlHelper::Font(HtmlHelper::CodeToHtml($block->text), array('size' => 14)); ?>
                                             <? elseif ($block->type == LetterBlock::TYPE_BANNER): ?>
-                                                <?= HtmlHelper::Banner($block->banner_file, $block->banner_url, $block->banner_area_coords); ?>
+                                                <?= HtmlHelper::Banner($block->banner_file, $block->banner_url, $block->banner_area_coords, $block->utm_content, $block->alt); ?>
                                             <? endif; ?>
                                         </td>
                                     </tr>
@@ -32,6 +32,11 @@ if ($blocks): ?>
                                     </tr>
                                 <? endforeach; ?>
                             </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <? HtmlHelper::PrintSpacer(0, 25); ?>
                         </td>
                     </tr>
                 </table>
@@ -50,18 +55,26 @@ if ($blocks): ?>
 
 <tr>
     <td colspan="2">
+        <? HtmlHelper::PrintSpacer(0, 27); ?>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
         <table width="600" cellspacing="0" cellpadding="0" border="0">
             <tbody>
             <tr>
                 <td width="20"><br></td>
                 <td width="159" valign="top">
-                    <?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Font('Акции', array('size' => 12, 'bold' => true, 'line-height' => 18, 'underline' => true))); ?>
+                    <?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Font('Акции', array('size' => 12, 'bold' => true, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
                     <br><br>
-                    <? if (!empty($letter->stocks)): foreach ($letter->stocks as $label => $url): ?>
-                        <?= HtmlHelper::Link($url, HtmlHelper::Font($label, array('size' => 12, 'line-height' => 18, 'underline' => true))); ?>
+                    <? if (!empty($letter->stocks)): foreach ($letter->stocks as $stock): if ($stock->on_list): ?>
+                        <?= HtmlHelper::Link($stock->url, HtmlHelper::Font($stock->label, array('size' => 12, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
                         <br>
-                    <? endforeach; endif; ?>
-                    <?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Font('Все акции', array('size' => 12, 'line-height' => 18, 'underline' => true))); ?>
+                    <? endif; endforeach; endif; ?>
+                    <?= HtmlHelper::Link('http://www.mvideo.ru/deal_of_the_day/', HtmlHelper::Font('Товар дня', array('size' => 12, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
+                    <br>
+                    <?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Font('Все акции', array('size' => 12, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
                 </td>
                 <td width="1" background="#cccccc" style="width: 1px; max-width:1px; padding: 0;background: #cccccc">
                     <br></td>
@@ -72,7 +85,7 @@ if ($blocks): ?>
                         'width' => 170,
                         'items' => array(
                             'Видео' => array(
-                                'url' => 'catalog/sd_1/',
+                                'url' => 'catalog/televizory-i-video/',
                                 'children' => array(
                                     'Телевизоры' => 'price/lvl_1/class_1/',
                                     'Видеоплееры' => 'price/lvl_109/class_484/',
@@ -80,36 +93,36 @@ if ($blocks): ?>
                                 ),
                             ),
                             'Аудио' => array(
-                                'url' => 'catalog/sd_2/',
+                                'url' => 'catalog/audiotehnika/',
                                 'children' => array(
                                     'MP3-плееры' => 'price/lvl_11/class_12/',
                                     'Музыкальные центры' => 'price/lvl_11/class_7/',
-                                    'Наушники' => 'catalog/lvl_155/',
+                                    'Наушники' => 'catalog/naushniki/',
                                 ),
                             ),
                             'Компьютеры' => array(
-                                'url' => 'catalog/sd_5/',
+                                'url' => 'catalog/noutbuki-planshety-i-kompyutery/',
                                 'children' => array(
-                                    'Ноутбуки' => 'lvl_8/class_130/',
-                                    'Планшеты' => 'lvl_8/class_328/',
-                                    'Компьютерные мыши' => 'lvl_114/class_295/',
-                                    'Сумки для ноутбуков' => 'lvl_114/class_377/',
-                                    'Внешние жесткие диски' => 'lvl_114/class_296/',
-                                    'Wi-Fi маршрутизаторы' => 'lvl_114/class_302/',
+                                    'Ноутбуки' => 'price/lvl_8/class_130/',
+                                    'Планшеты' => 'price/lvl_8/class_328/',
+                                    'Компьютерные мыши' => 'price/lvl_114/class_295/',
+                                    'Сумки для ноутбуков' => 'price/lvl_114/class_377/',
+                                    'Внешние жесткие диски' => 'price/lvl_114/class_296/',
+                                    'Wi-Fi маршрутизаторы' => 'price/lvl_114/class_302/',
                                 ),
                             ),
                             'Электронные книги' => array(
-                                'url' => 'lvl_116/class_13/',
+                                'url' => 'catalog/lvl_116/class_13/',
                             ),
                             'Смартфоны' => array(
-                                'url' => 'lvl_12/class_357/',
+                                'url' => 'catalog/lvl_12/class_357/',
                             ),
                         )),
                     array(
                         'width' => 209,
                         'items' => array(
                             'Фото' => array(
-                                'url' => 'catalog/lvl_14/',
+                                'url' => 'catalog/fotoapparaty-i-videotehnika/',
                                 'children' => array(
                                     'Зеркальные фотоаппараты' => 'price/lvl_14/class_261/',
                                     'Компактные фотоаппараты' => 'price/lvl_14/class_117/',
@@ -119,28 +132,28 @@ if ($blocks): ?>
                             ),
                             'Техника для кухни и дома' => array(
                                 'children' => array(
-                                    'Бытовая техника' => 'catalog/lvl_2/',
-                                    'Кухонная техника' => 'catalog/lvl_3/',
-                                    'Посуда' => 'catalog/lvl_154/',
-                                    'Встраиваемая бытовая техника' => 'catalog/lvl_4/',
+                                    'Бытовая техника' => 'catalog/bytovaya-tehnika/',
+                                    'Кухонная техника' => 'catalog/kuhonnaya-tehnika/',
+                                    'Посуда' => 'catalog/posuda/',
+                                    'Встраиваемая бытовая техника' => 'catalog/vstraivaemaya-tehnika/',
                                 ),
                             ),
                             'Красота и здоровье' => array(
-                                'url' => 'catalog/sd_12/',
+                                'url' => 'catalog/krasota-i-zdorove/',
                                 'children' => array(
-                                    'Товары для красоты' => 'catalog/lvl_102/',
-                                    'Товары для здоровья' => 'catalog/lvl_136/'
+                                    'Товары для красоты' => 'catalog/tovary-dlya-krasoty/',
+                                    'Товары для здоровья' => 'catalog/tovary-dlya-zdorovya/'
                                 ),
                             ),
                             'Автотехника' => array(
-                                'url' => 'catalog/sd_7/',
+                                'url' => 'catalog/avtomobilnaya-elektronika-i-gps/',
                                 'children' => array(
-                                    'Навигаторы и автоэлектроника' => 'catalog/lvl_106/',
-                                    'Автоакустика' => 'catalog/lvl_7/'
+                                    'Навигаторы и автоэлектроника' => 'catalog/navigatory-i-avtomobilnaya-elektronika/',
+                                    'Автоакустика' => 'catalog/avtoakustika/'
                                 ),
                             ),
                             'Игровые приставки и аксессуары' => array(
-                                'url' => 'catalog/lvl_105/',
+                                'url' => 'catalog/igrovye-pristavki/',
                             ),
                         ))
                 ); ?>
@@ -149,13 +162,13 @@ if ($blocks): ?>
                     <td width="<?= $column['width'] ?>" valign="top">
                         <? foreach ($column['items'] as $label => $category): ?>
                             <? if (isset($category['url'])): ?>
-                                <?= HtmlHelper::Link('http://www.mvideo.ru/' . $category['url'], HtmlHelper::Font($label, array('bold' => true, 'line-height' => 18, 'underline' => true))); ?>
+                                <?= HtmlHelper::Link('http://www.mvideo.ru/' . $category['url'], HtmlHelper::Font($label, array('bold' => true, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
                             <? else: ?>
-                                <?= HtmlHelper::Font($label, array('bold' => true, 'line-height' => 18)); ?>
+                                <?= HtmlHelper::Font($label, array('bold' => true, 'line-height' => 18), 'a_foot_menu'); ?>
                             <? endif; ?>
                             <br>
                             <? if (isset($category['children'])): foreach ($category['children'] as $label => $link): ?>
-                                <?= HtmlHelper::Link('http://www.mvideo.ru/' . $link, HtmlHelper::Font($label, array('line-height' => 18, 'underline' => true))); ?>
+                                <?= HtmlHelper::Link('http://www.mvideo.ru/' . $link, HtmlHelper::Font($label, array('line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
                                 <br>
                             <? endforeach; endif; ?>
                         <? endforeach; ?>
@@ -176,7 +189,7 @@ if ($blocks): ?>
 
 <tr>
     <td colspan="2">
-        <?= HtmlHelper::Image('http://www.mvideo.ru/pics/o/mailer/130815/vvp.jpg'); ?>
+        <?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/130815/vvp.jpg', 'http://www.mvideo.ru', array(), 'a_vvp_ban', 'М.Видео. В шаге. В клике. По звонку.'); ?>
     </td>
 </tr>
 <tr>
@@ -208,6 +221,7 @@ if ($blocks): ?>
         </table>
     </td>
 </tr>
+
 <tr>
     <td colspan="2">
         <? HtmlHelper::PrintSpacer(0, 27); ?>
@@ -217,33 +231,46 @@ if ($blocks): ?>
 <tr>
     <td colspan="2">
 
-        <? if (!empty($letter->disclaimer)): ?><?=HtmlHelper::Font(HtmlHelper::CodeToHtml($letter->disclaimer), array('color' => '#898989', 'size' => 11)); ?><br><br>
-        <? endif; ?>
+        <font size="1" face="Tahoma, sans-serif;" color="#898989"
+              style="font-family: Tahoma,Arial; font-size: 11px; color: #898989; text-decoration: none;">
+            <? foreach ($letter->stocks as $stock): if ($stock->on_footer): ?>
+                Акция «<?= HtmlHelper::Link($stock->url, HtmlHelper::Font($stock->label, array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>» проходит <?= HtmlHelper::GetDateRangeText($stock->date_start, $stock->date_end); ?> во всех обособленных подразделениях (магазинах)
+                <br>ООО «М.видео Менеджмент», включая интернет-магазин (покупки, сделанные посредством интернет-сайта <?= HtmlHelper::Link('http://www.mvideo.ru/', HtmlHelper::Font('mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>). Пожалуйста, ознакомьтесь с <?= HtmlHelper::Link($stock->url, HtmlHelper::Font('правилами акции', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>.
+                <br><br>
+            <? endif; endforeach; ?>
 
-        <? $texts = array(
-            'Если вы не хотите больше получать информацию об акциях и скидках, пожалуйста, пройдите по ' . HtmlHelper::Link('http://www.mvideo.ru/cabinet/subscription_emarsys.php?act=unsubscribe&bonuserid=$Bonus Member ID$&userid=$Online User ID$&email=$E-Mail$&subid[]=3',
-                HtmlHelper::Font('ссылке', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
 
-            'Если вы получили это письмо от друга и желаете получать новости от &quot;М.Видео&quot;,<br/> пожалуйста, ' .
-            HtmlHelper::Link(HtmlHelper::GetCabinetUrl(), HtmlHelper::Font('подпишитесь на рассылку новостей', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
-
-            'Чтобы регулярно и без проблем получать рассылку новостей от «М.Видео», пожалуйста,<br/> добавьте адрес ' .
-            HtmlHelper::Link('mailto:noreply@sender.mvideo.ru', HtmlHelper::Font('noreply@sender.mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true))) . ' в свою адресную книгу.',
-
-            'По всем возникающим вопросам вы можете обратиться по телефону в Москве (495) 777-777-5 (ежедневно с 9 до 21 часа) и регионах: 8-800-200-777-5 (звонок бесплатный).',
-
-            'Также вы можете написать нам по адресу ' . HtmlHelper::Link('mailto:noreply@sender.mvideo.ru', HtmlHelper::Font('24@mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
-
-            'ООО «М.видео Менеджмент», ОГРН 1057746840095. <br/>Юридический адрес: 105066, Россия, Москва, ул. Нижняя Красносельская, дом 40/12, корп. 20.<br>' .
-            HtmlHelper::Link('http://www.mvideo.ru/disclaimer/', HtmlHelper::Font('Политика конфиденциальности', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
-        );?>
-
-        <? foreach ($texts as $ind => $text): ?>
-            <?= HtmlHelper::Font($text, array('color' => '#898989', 'size' => 11)); ?>
-            <? if ($ind < count($texts) - 1): ?>
+            <? if (!empty($letter->disclaimer)): ?><?= HtmlHelper::Font(HtmlHelper::CodeToHtml($letter->disclaimer), array('color' => '#898989', 'size' => 11)); ?>
                 <br><br>
             <? endif; ?>
-        <? endforeach; ?>
+
+            <? $texts = array(
+                'Если вы не хотите больше получать информацию об акциях и скидках, пожалуйста, пройдите по ' . HtmlHelper::Link('http://www.mvideo.ru/cabinet/subscription_emarsys.php?act=unsubscribe&bonuserid=$Bonus Member ID$&userid=$Online User ID$&email=$E-Mail$&subid[]=3',
+                    HtmlHelper::Font('ссылке', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links') . '.',
+
+                'Если вы получили это письмо от друга и желаете получать новости от &quot;М.Видео&quot;,<br/> пожалуйста, ' .
+                HtmlHelper::Link(HtmlHelper::GetCabinetUrl(), HtmlHelper::Font('подпишитесь на рассылку новостей', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links') . '.',
+
+                'Чтобы регулярно и без проблем получать рассылку новостей от «М.Видео», пожалуйста,<br/> добавьте адрес ' .
+                HtmlHelper::Link('mailto:noreply@sender.mvideo.ru', HtmlHelper::Font('noreply@sender.mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links') . ' в свою адресную книгу.',
+
+                'По всем возникающим вопросам вы можете обратиться по телефону в Москве (495) 777-777-5 (ежедневно с 9 до 21 часа) и регионах: 8-800-200-777-5 (звонок бесплатный).',
+
+                'Также вы можете написать нам по адресу ' . HtmlHelper::Link('mailto:24@mvideo.ru', HtmlHelper::Font('24@mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true))) . '.',
+
+                'ООО «М.видео Менеджмент», ОГРН 1057746840095. <br/>Юридический адрес: 105066, Россия, Москва, ул. Нижняя Красносельская, дом 40/12, корп. 20.<br>' .
+                HtmlHelper::Link('http://www.mvideo.ru/disclaimer/', HtmlHelper::Font('Политика конфиденциальности', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links') . '.',
+            );?>
+
+            <? foreach ($texts as $ind => $text): ?>
+                <?= $text ?>
+                <? if ($ind < count($texts) - 1): ?>
+                    <br><br>
+                <? endif; ?>
+            <? endforeach; ?>
+
+        </font>
+
     </td>
 </tr>
 <tr>

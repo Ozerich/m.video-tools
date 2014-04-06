@@ -15,34 +15,73 @@
   }
 }
 
+input[type=checkbox] {
+  width: auto;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 #tab_footer {
 
   .footer-stocks-container {
     margin: 20px 0;
-    border-bottom: 1px solid #aaa;
     padding-bottom: 10px;
     > span {
       margin: 15px 10px;
       font-size: 150%;
     }
-    table {
-      width: 100%;
-      td, th {
-        padding: 5px 10px;
-        input {
-          width: 100%;
+
+    .stock {
+      margin: 10px 0;
+      border-bottom: 1px solid #aaa;
+      padding: 10px 0;
+
+      .stock-closed {
+        overflow: hidden;
+        > span {
+          float: left;
+          line-height: 40px;
+        }
+        .buttons {
+          float: right;
         }
       }
 
-      .cell-actions {
-        text-align: right;
-        width: 85px;
-        max-width: 85px;
+      .stock-opened {
+
+        overflow: hidden;
+        margin: 10px 0;
+
+        > div {
+          margin: 15px 0;
+          overflow: hidden;
+        }
+
+        .buttons {
+          overflow: hidden;
+          margin: 0 15px;
+          .btn-danger {
+            float: left;
+          }
+          .btn-success {
+            float: right;
+          }
+        }
+      }
+
+      .date-input {
+        padding-right: 20px;
       }
 
     }
-    .btn-save-stocks {
-      float: right;
+
+    .add-btn-container {
+      text-align: center;
+      margin: 10px 0;
+      a {
+        float: none;
+      }
     }
   }
 

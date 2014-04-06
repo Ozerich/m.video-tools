@@ -15,7 +15,7 @@ class Letter extends CActiveRecord
     public function rules()
     {
         return array(
-            array('name, reff,date,top_text,images_url, disclaimer', 'safe')
+            array('name, reff,date,top_text,images_url, disclaimer, utm_campaign', 'safe')
         );
     }
 
@@ -28,6 +28,7 @@ class Letter extends CActiveRecord
             'top_text' => 'Текст вверху страницы',
             'images_url' => 'URL к папке с картинками',
             'disclaimer' => 'Дисклеймер',
+            'utm_campaign' => 'UTM Campaign',
         );
     }
 
@@ -37,6 +38,7 @@ class Letter extends CActiveRecord
             'header_blocks' => array(self::HAS_MANY, 'LetterBlock', 'letter_id', 'scopes' => 'header'),
             'footer_blocks' => array(self::HAS_MANY, 'LetterBlock', 'letter_id', 'scopes' => 'footer'),
             'blocks' => array(self::HAS_MANY, 'LetterBlock', 'letter_id'),
+            'stocks' => array(self::HAS_MANY, 'LetterStock', 'letter_id'),
             'catalog_blocks' => array(self::HAS_MANY, 'LetterCatalogBlock', 'letter_id')
         );
     }
@@ -50,23 +52,11 @@ class Letter extends CActiveRecord
 
     public function beforeDelete()
     {
-        foreach (array_merge($this->blocks, $this->catalog_blocks) as $block) {
+        foreach (array_merge($this->blocks, $this->catalog_blocks, $this->stocks) as $block) {
             $block->delete();
         }
 
         return true;
-    }
-
-    public function beforeSave()
-    {
-        $this->stocks = serialize(empty($this->stocks) ? array() : $this->stocks);
-
-        return true;
-    }
-
-    public function afterFind()
-    {
-        $this->stocks = $this->stocks ? unserialize($this->stocks) : array();
     }
 
 
@@ -88,7 +78,14 @@ class Letter extends CActiveRecord
             $new->save();
         }
 
-        $this->stocks = $model->stocks;
+        foreach ($model->stocks as $stock) {
+            $new = new LetterStock();
+            $new->attributes = $stock->attributes;
+            $new->id = null;
+            $new->letter_id = $this->id;
+            $new->save();
+        }
+
         $this->top_text = $model->top_text;
         $this->disclaimer = $model->disclaimer;
         $this->images_url = $model->images_url;

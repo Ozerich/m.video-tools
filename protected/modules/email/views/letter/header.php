@@ -32,10 +32,10 @@
                         <tr>
                             <td>
                                 <img src="http://www.mvideo.ru/img/mailer/130125/logo.gif" style="display:block;"
-                                     width="154" height="83" vspace="0" hspace="0" border="0" usemap="#top_logo"/>
+                                     width="154" alt="М.Видео" height="83" vspace="0" hspace="0" border="0" usemap="#top_logo"/>
                                 <map id="top_logo" name="top_logo">
-                                    <area target="_blank" alt="Войти на сайт М.Видео"
-                                          href="http://www.mvideo.ru/?reff=<?= $letter->reff ?>" shape="rect"
+                                    <area target="_blank" alt="М.Видео" title="М.Видео"
+                                          href="<?=HtmlHelper::prepare_url('http://www.mvideo.ru/', 'a_head_logo')?>" shape="rect"
                                           coords="0,0,154,83"/>
                                 </map>
                             </td>
@@ -61,13 +61,13 @@
                                     <table width="600" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                         <tr>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/price/lvl_12/class_357/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu1.gif')); ?></td>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/catalog/lvl_3/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu2.gif')); ?></td>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/price/lvl_1/class_1/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu3.gif')); ?></td>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/catalog/lvl_2/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu4.gif')); ?></td>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/price/lvl_8/class_328/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu5.gif')); ?></td>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/deal_of_the_day/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu6.gif')); ?></td>
-                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu7.gif')); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/price/lvl_12/class_357/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu1.gif', 'Смартфоны'), 'a_head_menu', 'Смартфоны'); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/catalog/kuhonnaya-tehnika/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu2.gif', 'Кухонная техника'), 'a_head_menu', 'Кухонная техника'); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/price/lvl_1/class_1/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu3.gif', 'Телевизоры'), 'a_head_menu', 'Телевизоры'); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/catalog/bytovaya-tehnika/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu4.gif', 'Бытовая техника'), 'a_head_menu', 'Бытовая техника'); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/price/lvl_8/class_328/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu5.gif', 'Планшеты'), 'a_head_menu', 'Планшеты'); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/deal_of_the_day/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu6.gif', 'Товар дня'), 'a_head_menu', 'Товар дня'); ?></td>
+                                            <td><?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Image('http://www.mvideo.ru/img/mailer/130311/tmenu7.gif', 'Акции'), 'a_head_menu', 'Акции'); ?></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -95,7 +95,7 @@
                                                                 <? if ($block->type == LetterBlock::TYPE_TEXT): ?>
                                                                     <?= HtmlHelper::Font(HtmlHelper::CodeToHtml($block->text), array('size' => 14)); ?>
                                                                 <? elseif ($block->type == LetterBlock::TYPE_BANNER): ?>
-                                                                    <?= HtmlHelper::Banner($block->banner_file, $block->banner_url, $block->banner_area_coords); ?>
+                                                                    <?= HtmlHelper::Banner($block->banner_file, $block->banner_url, $block->banner_area_coords, $block->utm_content, $block->alt); ?>
                                                                 <? endif; ?>
                                                             </td>
                                                         </tr>

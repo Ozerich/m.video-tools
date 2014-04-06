@@ -93,6 +93,8 @@ class AjaxController extends Controller
             $model->position = Yii::app()->request->getPost('position');
             $model->text = $model->banner_url = $model->banner_file = '';
 
+            $model->utm_content = $request_data['utm_content'];
+
 
             $model_areas = array();
 
@@ -200,9 +202,15 @@ class AjaxController extends Controller
 
         $files = array();
 
+        $orig_reff = $model->reff;
+        $orig_utm = $model->utm_campaign;
+
         $regions = Yii::app()->request->getPost('regions');
         foreach ($regions as $region) {
-            $model->reff = $reff . ($region ? '_' . $region : '') . '&cyEmail=$pers_3$';
+
+            $model->reff = str_replace('{REGION}', $region, $orig_reff);
+            $model->utm_campaign = str_replace('{REGION}', $region, $orig_utm);
+
             $html = iconv('UTF-8', 'Windows-1251', $this->render('/letter/main', array('letter' => $model, 'region' => $region, 'encoding' => 'Windows-1251'), true));
 
             $filename = ($region ? $region : 'no_region') . '.html';
@@ -233,5 +241,51 @@ class AjaxController extends Controller
 
         echo '/web/tmp/' . $zip_name;
         die;
+    }
+
+
+    public function actionDelete_stock()
+    {
+        $id = Yii::app()->request->getPost('id');
+
+        $model = LetterStock::model()->findByPk($id);
+        if (!$model) {
+            throw new CHttpException(404);
+        }
+
+        echo $model->delete();
+
+        Yii::app()->end();
+    }
+
+
+    public function actionSubmit_stock()
+    {
+        $id = Yii::app()->request->getPost('id');
+        if ($id) {
+            $model = LetterStock::model()->findByPk($id);
+            if (!$model) {
+                throw new CHttpException(404);
+            }
+        } else {
+            $model = new LetterStock();
+            $model->letter_id = Yii::app()->request->getPost('letter_id');
+        }
+
+        $model->label = Yii::app()->request->getPost('label');
+        $model->url = Yii::app()->request->getPost('url');
+        $model->on_footer = Yii::app()->request->getPost('on_footer', 0) ? 1 : 0;
+        $model->on_list = Yii::app()->request->getPost('on_list', 0) ? 1 : 0;
+
+        if ($model->on_footer) {
+            $model->date_start = Yii::app()->request->getPost('date_start');
+            $model->date_end = Yii::app()->request->getPost('date_end');
+        }
+
+        $model->save();
+
+        echo json_encode(array('id' => $model->id));
+
+        Yii::app()->end();
     }
 }

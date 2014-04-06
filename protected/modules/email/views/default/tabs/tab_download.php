@@ -4,7 +4,7 @@
 
         <div class="regions">
             <? $regions = array(
-                '', 'MI', 'MI+B', 'RI', 'RB', 'RI+B', 'std_RI', 'new_RI',
+                '', 'MI', 'MB', 'MI+B', 'RI', 'RB', 'RI+B', 'std_RI', 'new_RI','MI-test','SPb-test', 'MI-std', 'SPb-std', 'Volgograd'
             ); ?>
             <? foreach ($regions as $ind => $region): ?>
                 <label for="region_<?= $ind ?>"><input type="checkbox" name="<?= $region ?>" <?=$region ? '' : 'checked'?>

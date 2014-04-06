@@ -17,6 +17,8 @@
 
         <div class="param-container param-banner-container"
              style="display:<?= $type == LetterBlock::TYPE_BANNER ? 'block' : 'none' ?>">
+
+
             <div class="param">
                 <label>Имя файла:</label>
                 <input type="text" name="file" class="form-control input-file"
@@ -38,10 +40,17 @@
 
             <div class="param-banner-container param-banner-simple-container"
                  style="display: <?= !$model || $model->isSimple() ? 'block' : 'none'; ?>">
-                <div class="param">
-                    <label>Ссылка:</label>
-                    <input type="text" name="url" class="form-control input-url"
-                           value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->banner_url : '' ?>">
+                <div class="row">
+                    <div class="param col-8">
+                        <label>Ссылка:</label>
+                        <input type="text" name="url" class="form-control input-url"
+                               value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->banner_url : '' ?>">
+                    </div>
+                    <div class="param col-4">
+                        <label>UTM Content:</label>
+                        <input type="text" name="utm_content" class="form-control input-url"
+                               value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->utm_content : '' ?>">
+                    </div>
                 </div>
             </div>
 
