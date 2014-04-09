@@ -27,11 +27,63 @@
                 <label>Модель товара:</label>
                 <input type="text" class="form-control" name="model" value="<?= $model ? $model->product_model : '' ?>">
             </div>
-            <div class="param">
-                <label>Код товара (или ссылка):</label>
-                <input type="text" class="form-control" name="url" value="<?= $model ? $model->url : '' ?>">
+            <div class="param param-product-url">
+                <div class="param-header">
+                    <? if (!$model || !$model->isMultiLinks()): ?>
+                        <label>Код товара (или ссылка):</label>
+                        <a href="#" data-mode="multi">Несколько ссылок</a>
+                    <? else: ?>
+                        <label>Несколько ссылок:</label>
+                        <a href="#" data-mode="single">Одна ссылка</a>
+                    <? endif; ?>
+                </div>
+                <div class="param-content">
+                    <div class="param-single"
+                         style="display: <?= !$model || !$model->isMultiLinks() ? 'block' : 'none'; ?>">
+                        <input type="text" class="form-control" name="url" value="<?= $model ? $model->url : '' ?>">
+                    </div>
+                    <div class="param-multi"
+                         style="display: <?= $model && $model->isMultiLinks() ? 'block' : 'none'; ?>">
+                        <div class="image-container">
+                            <img src="<?= $model ? $model->getFullImageUrl() : ''; ?>">
+                            <ul>
+                                <li class="new-link-container" style="display: none">
+                                    <div class="link-preview-container" style="display: none">
+                                        <span></span>
+                                        <a href="#" class="btn-edit">Редактировать</a>
+                                        <a href="#" class="btn-delete">Удалить</a>
+                                    </div>
+                                    <div class="link-form-container">
+                                        <input type="text" class="form-control input-coords" disabled value="">
+                                        <input type="text" class="form-control input-utm_content"
+                                               placeholder="UTM_Content">
+                                        <input type="text" class="form-control input-url" placeholder="Ссылка">
+                                        <button class="btn btn-mini btn-danger btn-cancel">Отмена</button>
+                                        <button class="btn btn-mini btn-success btn-save">Сохранить</button>
+                                    </div>
+                                </li>
+                                <? if($model) foreach($model->area_coords as $coords => $link): ?>
+                                    <li>
+                                        <div class="link-preview-container" style="display: block">
+                                            <span><?=$link['url']?></span>
+                                            <a href="#" class="btn-edit">Редактировать</a>
+                                            <a href="#" class="btn-delete">Удалить</a>
+                                        </div>
+                                        <div class="link-form-container" style="display: none">
+                                            <input type="text" class="form-control input-coords" disabled value="<?=$coords?>">
+                                            <input type="text" class="form-control input-utm_content" value="<?=$link['utm_content'];?>" placeholder="UTM_Content">
+                                            <input type="text" class="form-control input-url" value="<?=$link['url'];?>" placeholder="Ссылка">
+                                            <button class="btn btn-mini btn-danger btn-cancel">Отмена</button>
+                                            <button class="btn btn-mini btn-success btn-save">Сохранить</button>
+                                        </div>
+                                    </li>
+                                <? endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="param">
+            <div class="param param-file-name">
                 <label>Имя файла:</label>
                 <input type="text" class="form-control" name="image" value="<?= $model ? $model->image : '' ?>">
             </div>
@@ -56,11 +108,13 @@
             </div>
             <div class="param">
                 <label>Адрес ссылки под товаром:</label>
-                <input type="text" class="form-control" name="all_url" value="<?= $model ? $model->product_all_url : '' ?>">
+                <input type="text" class="form-control" name="all_url"
+                       value="<?= $model ? $model->product_all_url : '' ?>">
             </div>
             <div class="param">
                 <label>Текст ссылки под товаром:</label>
-                <input type="text" class="form-control" name="all_label" value="<?= $model ? $model->product_all_label : '' ?>">
+                <input type="text" class="form-control" name="all_label"
+                       value="<?= $model ? $model->product_all_label : '' ?>">
             </div>
         </div>
 

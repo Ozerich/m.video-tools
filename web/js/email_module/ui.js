@@ -88,20 +88,18 @@ $(function () {
         return false;
     });
 
-    $('.zip-link').on('click', function(){
+    $('.zip-link').on('click', function () {
         $(this).hide();
         return true;
     });
 });
 
-$.fn.BlockConstructor = function (options) {
 
+$.fn.BlockConstructor = function (options) {
 
     var $constructor = $(this);
 
-    $(window).load(function () {
-        LetterHelper.UpdateContructorPositions($constructor);
-    });
+    LetterHelper.UpdateContructorPositions($constructor);
 
     $constructor.on('click', '.block-container .btn-open-form', function () {
         var $block = $(this).parents('.block-container');
@@ -183,7 +181,19 @@ $.fn.BlockConstructor = function (options) {
             $form.find('.param-banner-areas-container li').each(function () {
                 request.banner_areas.push({
                     coords: $(this).data('coords'),
-                    url: $(this).data('url')
+                    url: $(this).data('url'),
+                    utm_content: $(this).data('utm_content')
+                });
+            });
+        }
+
+        if (request.type == 'product' && $form.find('.param-product-url .param-multi:visible').length) {
+            request.image_areas = [];
+            $form.find('.param-product-url .param-multi li').not('.new-link-container').each(function () {
+                request.image_areas.push({
+                    coords: $(this).find('.input-coords').val().replace('[', '').replace(']', '').replace(';', ','),
+                    url: $(this).find('.input-url').val().trim(),
+                    utm_content: $(this).find('.input-utm_content').val().trim()
                 });
             });
         }
@@ -229,6 +239,117 @@ $.fn.BlockConstructor = function (options) {
     });
 
 
+    $constructor.find('.param-product-container').each(function () {
+        var $container = $(this);
+
+        $container.find('.param-file-name input').on('change', function () {
+            $.post('/email/ajax/get_image_url', {
+                letter_id: LetterHelper.GetId(),
+                filename: $(this).val()
+            }, function (url) {
+                $container.find('.param-product-url img').attr('src', url);
+            });
+            return false;
+        });
+
+
+        var $url_container = $container.find('.param-product-url');
+
+        var scene = $url_container.find('img').imgAreaSelect({
+            instance: true,
+            handles: true,
+            onSelectStart: function () {
+                if ($url_container.find('.link-form-container:visible').length === 0)
+                    $url_container.find('.new-link-container').show();
+            },
+            onSelectChange: function (img, selection) {
+                $url_container.find('.link-form-container:visible').find('.input-coords').val('[' + selection.x1 + ',' + selection.y1 + ';' + (selection.x1 + selection.width) + ',' + (selection.y1 + selection.height) + ']');
+            }
+        });
+
+        $url_container.find('.param-header > a').on('click', function () {
+            var $block = $(this).parents('.param');
+
+            if ($(this).data('mode') == 'single') {
+                $block.find('.param-header label').text('Код товара (или ссылка):');
+                $(this).text('Несколько ссылок');
+                $(this).data('mode', 'multi');
+                $block.find('.param-content .param-single').show();
+                $block.find('.param-content .param-multi').hide();
+                scene.cancelSelection();
+                $url_container.find('.new-link-container').hide();
+            }
+            else {
+                $block.find('.param-header label').text('Несколько ссылок:');
+                $(this).text('Одна ссылка');
+                $(this).data('mode', 'single');
+                $block.find('.param-content .param-single').hide();
+                $block.find('.param-content .param-multi').show();
+            }
+
+            return false;
+        });
+
+        $url_container.on('click', '.link-form-container .btn-cancel', function () {
+            var $row = $(this).parents('li');
+
+            if ($row.hasClass('new-link-container')) {
+                $row.hide();
+            }
+            else {
+                $row.find('.link-form-container').hide();
+                $row.find('.link-preview-container').show();
+            }
+            scene.cancelSelection();
+
+            $url_container.find('li').not('.new-link-container').show();
+
+            return false;
+        });
+
+        $url_container.on('click', '.link-form-container .btn-save', function () {
+
+            var $row = $(this).parents('li');
+
+            if ($row.hasClass('new-link-container')) {
+                $row = $row.hide().clone().show().removeClass('new-link-container').appendTo($row.parent());
+            }
+
+            $row.find('.link-form-container').hide();
+            $row.find('.link-preview-container').show();
+            $row.find('.link-preview-container span').text($row.find('.input-url').val());
+
+            $url_container.find('li').not('.new-link-container').show();
+
+            scene.cancelSelection();
+            return false;
+        });
+
+        $url_container.find('ul').on('click', '.btn-delete', function () {
+            $(this).parents('li').remove();
+            return false;
+        });
+
+        $url_container.find('ul').on('click', '.btn-edit', function () {
+            var $row = $(this).parents('li');
+
+            $url_container.find('li').hide();
+            $row.show();
+
+            $row.find('.link-preview-container').hide();
+            $row.find('.link-form-container').show();
+
+            var coords = $row.find('.input-coords').val().replace('[', '').replace(']', '').replace(';', ',').split(',');
+
+            scene.setSelection(+coords[0], +coords[1], +coords[2], +coords[3], false);
+            scene.setOptions({show: true});
+            scene.update();
+
+            return false;
+        });
+    });
+
+
     $constructor.find('.param-banner-areas-container').each(function () {
         var $container = $(this);
 
@@ -242,6 +363,7 @@ $.fn.BlockConstructor = function (options) {
                 if (!$form_container.data('elem')) {
                     $form_container.find('.btn-submit').text('Добавить');
                     $form_container.find('.input-url').val('');
+                    $form_container.find('.input-utm_content').val('');
                 }
             },
             onSelectChange: function (img, selection) {
@@ -259,9 +381,10 @@ $.fn.BlockConstructor = function (options) {
         $container.find('.btn-submit').on('click', function () {
 
             var url = $form_container.find('.input-url').val();
+            var utm_content = $form_container.find('.input-utm_content').val();
             var coords = $form_container.find('.input-coords').val().replace('[', '').replace(']', '').replace(';', ',');
 
-            var html = '<li data-coords="' + coords + '" data-url="' + url + '">' +
+            var html = '<li data-coords="' + coords + '" data-url="' + url + '" data-utm_content="' + utm_content + '">' +
                 '<a target="_blank" href="' + url + '">' + url + '</a>' +
                 '<div class="actions">' +
                 '<a href="#" class="glyphicon glyphicon-wrench btn-edit"></a> ' +
@@ -287,6 +410,7 @@ $.fn.BlockConstructor = function (options) {
             $form_container.data('elem', $item).show().find('.btn-submit').text('Сохранить');
 
             $form_container.find('.input-url').val($item.data('url'));
+            $form_container.find('.input-utm_content').val($item.data('utm_content'));
             $form_container.find('.input-coords').val($item.data('coords'));
 
             var coords = $item.data('coords').split(',');

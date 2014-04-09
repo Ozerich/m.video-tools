@@ -62,6 +62,18 @@
         .param {
           overflow: hidden;
           margin-bottom: 5px;
+
+          > .param-header {
+            label{
+              font-weight: bold;
+            }
+            a {
+              float: right;
+              font-size: 12px;
+              line-height: 24px;
+              color: blue;
+            }
+          }
           > label {
             display: block;
             font-weight: bold;
@@ -71,6 +83,70 @@
 
           textarea {
             height: 135px;
+          }
+        }
+
+        .param-product-url {
+          .image-container {
+            text-align: center;
+
+            ul{
+              margin: 10px 0;
+              li{
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+                &:last-child{
+                  border-bottom: none;
+                }
+              }
+            }
+
+            .link-form-container{
+              overflow: hidden;
+              text-align: left;
+
+              .input-coords{
+                width: 121px;
+                display: inline-block;
+              }
+
+              .input-utm_content{
+                width: 295px;
+                display: inline-block;
+              }
+
+              .input-url{
+                display: block;
+                width: 420px;
+                margin: 8px 0;
+              }
+
+              .btn-danger{
+                float: left;
+              }
+
+              .btn-success{
+                float: right;
+              }
+
+            }
+
+            .link-preview-container{
+              span{
+                display: block;
+                font-size: 12px;
+              }
+              a{
+                font-size: 12px;
+                &.btn-edit{
+                  color: green;
+                }
+                &.btn-delete{
+                  color: red;
+                }
+              }
+            }
+
           }
         }
 
@@ -94,7 +170,7 @@
           }
 
           .banner-form-container {
-            margin: 15px 0 15px 150px;
+            margin: 15px 0 15px 50px;
             overflow: hidden;
             button {
               float: left;
@@ -116,22 +192,26 @@
                 width: 350px;
                 margin-left: 10px;
               }
+              &.param-utm_content{
+                width: 150px;
+                margin-left: 10px;
+              }
             }
           }
 
           ul {
             width: 400px;
             margin: 0 auto;
-            li{
+            li {
               overflow: hidden;
-              > a{
+              > a {
                 float: left;
                 color: blue;
               }
-              .actions{
+              .actions {
                 float: right;
                 width: 70px;
-                a{
+                a {
                   margin-right: 5px;
                 }
               }

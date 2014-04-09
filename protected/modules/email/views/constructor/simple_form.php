@@ -25,6 +25,12 @@
                        value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->banner_file : '' ?>">
             </div>
 
+            <div class="param">
+                <label>Alt текст:</label>
+                <input type="text" name="alt" class="form-control input-alt"
+                       value="<?= $type == LetterBlock::TYPE_BANNER && $model ? $model->alt : '' ?>">
+            </div>
+
             <div class="param param-banner-type param-radio">
                 <label>Тип баннера:</label>
 
@@ -68,14 +74,18 @@
                         <label>Ссылка:</label>
                         <input type="text" class="form-control input-url">
                     </div>
+                    <div class="param param-utm_content">
+                        <label>UTM_Content:</label>
+                        <input type="text" class="form-control input-utm_content">
+                    </div>
                     <button class="btn btn-mini btn-success btn-submit">Добавить</button>
                     <button class="btn btn-mini btn-danger btn-cancel">Отмена</button>
                 </div>
                 <ul>
                     <? if ($model && $model->banner_area_coords): ?>
                         <? foreach ($model->banner_area_coords as $coords => $url): ?>
-                            <li data-coords="<?= $coords ?>" data-url="<?= $url ?>">
-                                <a target="_blank" href="<?= $url ?>"><?= $url ?></a>
+                            <li data-coords="<?= $coords ?>" data-url="<?= is_string($url) ? $url : $url['url'] ?>" data-utm_content="<?=is_string($url) ? '' : $url['utm_content']?>">
+                                <a target="_blank" href="<?=  is_string($url) ? $url : $url['url'] ?>"><?=  is_string($url) ? $url : $url['url'] ?></a>
 
                                 <div class="actions">
                                     <a href="#" class="glyphicon glyphicon-wrench btn-edit"></a>

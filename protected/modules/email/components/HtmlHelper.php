@@ -134,7 +134,7 @@ class HtmlHelper
         $width = $width == 0 ? '100%' : $width;
         $height = $height == 0 ? '100%' : $height;
 
-        echo '<img src="http://www.mvideo.ru/img/mailer/0.gif" width="' . $width . '" height="' . $height . '"/>';
+        echo '<div style="line-height:0;"><img src="http://www.mvideo.ru/img/mailer/0.gif" width="' . $width . '" height="' . $height . '"/></div>';
     }
 
     public static function prepare_url($url, $utm_content = null)
@@ -238,8 +238,9 @@ class HtmlHelper
 
             $result = self::Image($banner_src, '', array(), $img_id);
             $result .= '<map id="' . $img_id . '" name="' . $img_id . '">';
-            foreach ($areas as $coords => $url) {
-                $result .= '<area target="_blank" alt="'.$alt.'" href="' . self::prepare_url($url, $utm_content) . '" shape="rect" coords="' . $coords . '"/>';
+            foreach ($areas as $coords => $url_data) {
+                $url = self::prepare_url(is_string($url_data) ? $url_data : $url_data['url'], is_string($url_data) ? $utm_content : $url_data['utm_content']);
+                $result .= '<area target="_blank" alt="'.$alt.'" href="' . $url . '" shape="rect" coords="' . $coords . '"/>';
             }
             $result .= '</map>';
 

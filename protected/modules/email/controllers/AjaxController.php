@@ -77,7 +77,6 @@ class AjaxController extends Controller
 
             $model->url = isset($request_data['url']) ? $request_data['url'] : '';
             $model->image = isset($request_data['image']) ? $request_data['image'] : '';
-
             if ($model->type == 'product') {
                 $model->product_category = isset($request_data['category']) ? $request_data['category'] : '';
                 $model->product_model = isset($request_data['model']) ? $request_data['model'] : '';
@@ -89,10 +88,23 @@ class AjaxController extends Controller
                 $model->product_features = isset($request_data['features']) ? explode("\n", $request_data['features']) : array();
             }
 
+            $area_coords = array();
+
+            $request_coords = Yii::app()->request->getPost('image_areas');
+            if ($request_coords) {
+                foreach ($request_coords as $coord) {
+                    $area_coords[$coord['coords']] = array(
+                        'url' => $coord['url'],
+                        'utm_content' => $coord['utm_content']
+                    );
+                }
+            }
+
+            $model->area_coords =$area_coords;
+
         } else {
             $model->position = Yii::app()->request->getPost('position');
             $model->text = $model->banner_url = $model->banner_file = '';
-
             $model->utm_content = $request_data['utm_content'];
 
 
@@ -101,12 +113,13 @@ class AjaxController extends Controller
             if ($model->type == 'banner') {
                 $model->banner_url = isset($request_data['url']) ? $request_data['url'] : '';
                 $model->banner_file = isset($request_data['file']) ? $request_data['file'] : '';
+                $model->alt = isset($request_data['alt']) ? $request_data['alt'] : '';
 
                 $areas = Yii::app()->request->getPost('banner_areas', array());
                 if ($areas) {
                     $model->banner_url = '';
                     foreach ($areas as $area) {
-                        $model_areas[$area['coords']] = $area['url'];
+                        $model_areas[$area['coords']] = array('url' => $area['url'], 'utm_content' => $area['utm_content']);
                     }
                 }
 
@@ -285,6 +298,22 @@ class AjaxController extends Controller
         $model->save();
 
         echo json_encode(array('id' => $model->id));
+
+        Yii::app()->end();
+    }
+
+
+    public function actionGet_image_url()
+    {
+        $id = Yii::app()->request->getPost('letter_id');
+        $letter = Letter::model()->findByPk($id);
+
+        if (!$letter) {
+            echo '1';
+        } else {
+            $filename = Yii::app()->request->getPost('filename');
+            echo $letter->images_url . $filename;
+        }
 
         Yii::app()->end();
     }

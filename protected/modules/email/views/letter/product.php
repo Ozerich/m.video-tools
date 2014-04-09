@@ -13,7 +13,7 @@
 
     <tr>
         <td>
-            <? if ($product->area_coords): ?>
+            <? if ($product->isMultiLinks()): ?>
                 <?= HtmlHelper::Banner($product->image, null, $product->area_coords, $product->getUtmContent('img')); ?>
             <? else: ?>
                 <?= HtmlHelper::Link($product->getFullUrl(), HtmlHelper::Image($product->getFullImageUrl()), $product->getUtmContent('img')); ?>

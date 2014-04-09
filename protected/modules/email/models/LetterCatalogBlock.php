@@ -59,6 +59,11 @@ class LetterCatalogBlock extends CActiveRecord
     }
 
 
+    public function isMultiLinks(){
+        return !empty($this->area_coords);
+    }
+
+
     public function getFullImageUrl()
     {
         return $this->letter->images_url . $this->image;
