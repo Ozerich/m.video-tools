@@ -105,7 +105,7 @@ class AjaxController extends Controller
         } else {
             $model->position = Yii::app()->request->getPost('position');
             $model->text = $model->banner_url = $model->banner_file = '';
-            $model->utm_content = $request_data['utm_content'];
+            $model->utm_content = isset($request_data['utm_content']) ? $request_data['utm_content'] : '';
 
 
             $model_areas = array();
@@ -119,7 +119,7 @@ class AjaxController extends Controller
                 if ($areas) {
                     $model->banner_url = '';
                     foreach ($areas as $area) {
-                        $model_areas[$area['coords']] = array('url' => $area['url'], 'utm_content' => $area['utm_content']);
+                        $model_areas[$area['coords']] = array('url' => $area['url'], 'utm_content' => $area['utm_content'], 'alt' => $area['alt']);
                     }
                 }
 

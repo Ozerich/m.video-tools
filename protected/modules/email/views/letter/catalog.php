@@ -1,9 +1,9 @@
+<? $blocks = $letter->catalog_blocks;
+if ($blocks): ?>
 <center>
     <table width="638" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" class="pad_null"
            style="border-left: 1px solid #CACACA; border-right:1px solid #cacaca; margin: 0 auto;">
         <tbody>
-        <? $blocks = $letter->catalog_blocks;
-        if ($blocks): ?>
         <tr>
             <td>
                 <center>
@@ -45,7 +45,6 @@
                 </center>
             </td>
         </tr>
-        <? endif; ?>
         <tr>
             <td>
                 <? HtmlHelper::PrintSpacer(0, 38); ?>
@@ -54,3 +53,4 @@
         </tbody>
     </table>
 </center>
+<? endif; ?>

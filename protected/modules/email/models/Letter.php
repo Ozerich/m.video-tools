@@ -91,6 +91,7 @@ class Letter extends CActiveRecord
         $this->images_url = $model->images_url;
         $this->date = $model->date;
         $this->reff = $model->reff;
+        $this->utm_campaign = $model->utm_campaign;
         $this->save();
     }
 }

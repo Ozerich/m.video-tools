@@ -21,7 +21,7 @@ class LetterBlock extends CActiveRecord
     public function rules()
     {
         return array(
-            array('position, priority, type, banner_file, banner_url, banner_area_coords, text', 'safe')
+            array('position, priority, type, banner_file, banner_url, banner_area_coords, text, utm_content, alt', 'safe')
         );
     }
 
@@ -84,7 +84,15 @@ class LetterBlock extends CActiveRecord
 
     public function afterFind()
     {
-        $this->banner_area_coords = $this->banner_area_coords ? unserialize($this->banner_area_coords) : array();
+        $banner_area_coords = $this->banner_area_coords ? unserialize($this->banner_area_coords) : array();
+
+        foreach($banner_area_coords as &$coords){
+            if(!isset($coords['alt'])){
+                $coords['alt'] = '';
+            }
+        }
+
+        $this->banner_area_coords = $banner_area_coords;
     }
 
     public function isSimple()

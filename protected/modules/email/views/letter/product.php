@@ -3,11 +3,17 @@
 
     <tr>
         <td height="32" style="height:32px;vertical-align:top;line-height:13px;">
-            <?=
-            HtmlHelper::Link($product->getFullUrl(), HtmlHelper::Font(
-                '<b>' . HtmlHelper::CodeToHtml($product->product_category) . '</b>' . (strlen($product->product_model) < 60 ? '<br/>' : ' ') . HtmlHelper::CodeToHtml($product->product_model), array(
-                'size' => 11,
-            )), $product->getUtmContent('name')); ?>
+            <? if (strpos($product->product_model, '[url') === false): ?>
+                <? echo HtmlHelper::Link($product->getFullUrl(), HtmlHelper::Font(
+                    '<b>' . HtmlHelper::CodeToHtml($product->product_category) . '</b>' . (strlen($product->product_model) < 60 ? '<br/>' : ' ') . HtmlHelper::CodeToHtml($product->product_model), array(
+                    'size' => 11,
+                )), $product->getUtmContent('name')); ?>
+            <? else: ?>
+                <? echo HtmlHelper::Font($product->product_category, array('size' => 11, 'bold' => true)); ?><br>
+                <? echo HtmlHelper::Font(preg_replace_callback('#\[url\=(.+?)\](.+?)\[\/url\]#sui', function ($matches) use ($product) {
+                    return HtmlHelper::Link($matches[1], HtmlHelper::Font($matches[2], array('size' => 11, 'color' => '#000', 'underline' => true)), $product->getUtmContent('name', $matches[1]));
+                }, $product->product_model), array('size' => 11)); ?>
+            <? endif; ?>
         </td>
     </tr>
 
@@ -60,7 +66,9 @@
                 <?=
                 preg_replace_callback('#<b>(.+?)</b>#', function ($matches) {
                     return HtmlHelper::Font($matches[1], array('bold' => true, 'up' => true, 'size' => 18));
-                }, HtmlHelper::Font(HtmlHelper::CodeToHtml($product->product_yellow), array('size' => 11, 'bold' => false, 'up' => true))); ?>
+                }, HtmlHelper::Font(HtmlHelper::CodeToHtml(preg_replace_callback('#\[b_small\](.+?)\[\/b_small\]#', function ($matches) {
+                    return HtmlHelper::Font($matches[1], array('bold' => true, 'up' => true, 'size' => 11));
+                }, $product->product_yellow)), array('size' => 11, 'bold' => false, 'up' => true))); ?>
             </td>
         </tr>
     <? endif; ?>

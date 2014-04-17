@@ -182,7 +182,8 @@ $.fn.BlockConstructor = function (options) {
                 request.banner_areas.push({
                     coords: $(this).data('coords'),
                     url: $(this).data('url'),
-                    utm_content: $(this).data('utm_content')
+                    utm_content: $(this).data('utm_content'),
+                    alt: $(this).data('alt')
                 });
             });
         }
@@ -382,9 +383,10 @@ $.fn.BlockConstructor = function (options) {
 
             var url = $form_container.find('.input-url').val();
             var utm_content = $form_container.find('.input-utm_content').val();
+            var alt = $form_container.find('.input-alt').val();
             var coords = $form_container.find('.input-coords').val().replace('[', '').replace(']', '').replace(';', ',');
 
-            var html = '<li data-coords="' + coords + '" data-url="' + url + '" data-utm_content="' + utm_content + '">' +
+            var html = '<li data-alt="'+alt+'" data-coords="' + coords + '" data-url="' + url + '" data-utm_content="' + utm_content + '">' +
                 '<a target="_blank" href="' + url + '">' + url + '</a>' +
                 '<div class="actions">' +
                 '<a href="#" class="glyphicon glyphicon-wrench btn-edit"></a> ' +
@@ -412,6 +414,7 @@ $.fn.BlockConstructor = function (options) {
             $form_container.find('.input-url').val($item.data('url'));
             $form_container.find('.input-utm_content').val($item.data('utm_content'));
             $form_container.find('.input-coords').val($item.data('coords'));
+            $form_container.find('.input-alt').val($item.data('alt'));
 
             var coords = $item.data('coords').split(',');
 

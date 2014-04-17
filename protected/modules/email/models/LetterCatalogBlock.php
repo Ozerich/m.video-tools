@@ -18,7 +18,7 @@ class LetterCatalogBlock extends CActiveRecord
     public function rules()
     {
         return array(
-            array('priority, type, columns, image, url, product_category, product_model, product_yellow, product_price, product_old_price, product_features, product_all_url, product_all_label', 'safe')
+            array('priority, type, columns, image, url, product_category, product_model, product_yellow, product_price, product_old_price, product_features, product_all_url, product_all_label, area_coords', 'safe')
         );
     }
 
@@ -80,11 +80,11 @@ class LetterCatalogBlock extends CActiveRecord
     }
 
 
-    public function getUtmContent($suffix)
+    public function getUtmContent($suffix, $code = null)
     {
         $criteria = new CDbCriteria();
         $criteria->condition = '`letter_id` = '.$this->letter_id.' AND `id` < '.$this->id;
         $line = ceil((self::model()->count($criteria) + 1) / 2);
-        return 'a_'.$line.'product_'.$this->url.'_'.$suffix;
+        return 'a_'.$line.'product_'.($code ? $code : $this->url).'_'.$suffix;
     }
 }

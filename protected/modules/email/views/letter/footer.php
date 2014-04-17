@@ -67,7 +67,7 @@ if ($blocks): ?>
                 <td width="20"><br></td>
                 <td width="159" valign="top">
                     <?= HtmlHelper::Link('http://www.mvideo.ru/discount/', HtmlHelper::Font('Акции', array('size' => 12, 'bold' => true, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
-                    <br><br>
+                    <br>
                     <? if (!empty($letter->stocks)): foreach ($letter->stocks as $stock): if ($stock->on_list): ?>
                         <?= HtmlHelper::Link($stock->url, HtmlHelper::Font($stock->label, array('size' => 12, 'line-height' => 18, 'underline' => true)), 'a_foot_menu'); ?>
                         <br>
@@ -233,16 +233,22 @@ if ($blocks): ?>
 
         <font size="1" face="Tahoma, sans-serif;" color="#898989"
               style="font-family: Tahoma,Arial; font-size: 11px; color: #898989; text-decoration: none;">
+
+            <? if (!empty($letter->disclaimer)): ?><?=
+                HtmlHelper::Font(preg_replace_callback('#\[url="*(.+?)"*\](.+?)\[/url\]#sui', function ($matches) {
+                    return HtmlHelper::Link($matches[1], HtmlHelper::Font($matches[2], array('color' => 'red', 'size' => 11, 'underline' => true)), 'a_foot_links');
+                }, $letter->disclaimer), array('color' => '#898989', 'size' => 11)); ?>
+                <br><br>
+            <? endif; ?>
+
             <? foreach ($letter->stocks as $stock): if ($stock->on_footer): ?>
                 Акция «<?= HtmlHelper::Link($stock->url, HtmlHelper::Font($stock->label, array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>» проходит <?= HtmlHelper::GetDateRangeText($stock->date_start, $stock->date_end); ?> во всех обособленных подразделениях (магазинах)
-                <br>ООО «М.видео Менеджмент», включая интернет-магазин (покупки, сделанные посредством интернет-сайта <?= HtmlHelper::Link('http://www.mvideo.ru/', HtmlHelper::Font('mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>). Пожалуйста, ознакомьтесь с <?= HtmlHelper::Link($stock->url, HtmlHelper::Font('правилами акции', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>.
+                ООО «М.видео Менеджмент», включая интернет-магазин (покупки, сделанные посредством интернет-сайта <?= HtmlHelper::Link('http://www.mvideo.ru/', HtmlHelper::Font('mvideo.ru', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>). Пожалуйста, ознакомьтесь с <?= HtmlHelper::Link($stock->url, HtmlHelper::Font('правилами акции', array('size' => 11, 'color' => 'red', 'underline' => true)), 'a_foot_links'); ?>.
                 <br><br>
             <? endif; endforeach; ?>
 
 
-            <? if (!empty($letter->disclaimer)): ?><?= HtmlHelper::Font(HtmlHelper::CodeToHtml($letter->disclaimer), array('color' => '#898989', 'size' => 11)); ?>
-                <br><br>
-            <? endif; ?>
+
 
             <? $texts = array(
                 'Если вы не хотите больше получать информацию об акциях и скидках, пожалуйста, пройдите по ' . HtmlHelper::Link('http://www.mvideo.ru/cabinet/subscription_emarsys.php?act=unsubscribe&bonuserid=$Bonus Member ID$&userid=$Online User ID$&email=$E-Mail$&subid[]=3',

@@ -38,4 +38,10 @@ class LetterStock extends CActiveRecord
             array(self::BELONGS_TO, 'Letter', 'letter_id')
         );
     }
+
+    public function defaultScope(){
+        return array(
+            'order' => 'id ASC'
+        );
+    }
 }

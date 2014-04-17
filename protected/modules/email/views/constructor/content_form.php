@@ -55,8 +55,7 @@
                                     </div>
                                     <div class="link-form-container">
                                         <input type="text" class="form-control input-coords" disabled value="">
-                                        <input type="text" class="form-control input-utm_content"
-                                               placeholder="UTM_Content">
+                                        <input type="text" class="form-control input-utm_content" placeholder="UTM_Content">
                                         <input type="text" class="form-control input-url" placeholder="Ссылка">
                                         <button class="btn btn-mini btn-danger btn-cancel">Отмена</button>
                                         <button class="btn btn-mini btn-success btn-save">Сохранить</button>

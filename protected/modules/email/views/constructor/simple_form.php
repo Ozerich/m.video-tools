@@ -78,13 +78,17 @@
                         <label>UTM_Content:</label>
                         <input type="text" class="form-control input-utm_content">
                     </div>
+                    <div class="param param-alt">
+                        <label>ALT текст:</label>
+                        <input type="text" class="form-control input-alt">
+                    </div>
                     <button class="btn btn-mini btn-success btn-submit">Добавить</button>
                     <button class="btn btn-mini btn-danger btn-cancel">Отмена</button>
                 </div>
                 <ul>
                     <? if ($model && $model->banner_area_coords): ?>
                         <? foreach ($model->banner_area_coords as $coords => $url): ?>
-                            <li data-coords="<?= $coords ?>" data-url="<?= is_string($url) ? $url : $url['url'] ?>" data-utm_content="<?=is_string($url) ? '' : $url['utm_content']?>">
+                            <li data-coords="<?= $coords ?>" data-alt="<?=is_string($url) ? '' : $url['alt'];?>" data-url="<?= is_string($url) ? $url : $url['url'] ?>" data-utm_content="<?=is_string($url) ? '' : $url['utm_content']?>">
                                 <a target="_blank" href="<?=  is_string($url) ? $url : $url['url'] ?>"><?=  is_string($url) ? $url : $url['url'] ?></a>
 
                                 <div class="actions">

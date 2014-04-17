@@ -139,6 +139,8 @@ class HtmlHelper
 
     public static function prepare_url($url, $utm_content = null)
     {
+        $url = strpos($url, 'http://') !== false ? $url : 'http://www.mvideo.ru/products/' . $url . '.html';
+
         $utm_content = str_replace(' ','', $utm_content);
         $parts = parse_url($url);
         $query = null;
@@ -240,7 +242,8 @@ class HtmlHelper
             $result .= '<map id="' . $img_id . '" name="' . $img_id . '">';
             foreach ($areas as $coords => $url_data) {
                 $url = self::prepare_url(is_string($url_data) ? $url_data : $url_data['url'], is_string($url_data) ? $utm_content : $url_data['utm_content']);
-                $result .= '<area target="_blank" alt="'.$alt.'" href="' . $url . '" shape="rect" coords="' . $coords . '"/>';
+                $alt = is_string($url_data) ? '' : (isset($url_data['alt']) ? $url_data['alt'] : '');
+                $result .= '<area alt="'.$alt.'" title="'.$alt.'" target="_blank" alt="'.$alt.'" href="' . $url . '" shape="rect" coords="' . $coords . '"/>';
             }
             $result .= '</map>';
 
@@ -267,7 +270,7 @@ class HtmlHelper
         $date_start = explode('-', $date_start);
         $date_end = explode('-', $date_end);
 
-        return 'c ' . (int)$date_start[2] . ' по ' . (int)$date_end[2] . ' ' . $monthes[(int)$date_end[1] - 1];
+        return 'c ' . (int)$date_start[2].($date_start[1] != $date_end[1] ? ' '.$monthes[(int)$date_start[1] - 1] : '') . ' по ' . (int)$date_end[2] . ' ' . $monthes[(int)$date_end[1] - 1];
     }
 
 
