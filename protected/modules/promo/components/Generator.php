@@ -95,7 +95,7 @@ class Generator
         $html = str_replace('src="/', 'src="http://www.mvideo.ru/', $html);
 
         if (preg_match('#<div class="promo-pages-listing.+?>(.+?)<div class="clear"></div>#si', $html, $promo_block)) {
-            $promo_block_new = "\n\n<style>\n\n</style>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n\n<div id=\"promo_" . $name . "\">\n\n</div>\n\n</div>";
+            $promo_block_new = "\n\n<style>\n\n</style>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n\n<div id=\"" . $name . "\">\n\n</div>\n\n</div>";
             $html = str_replace($promo_block[1], $promo_block_new, $html);
         }
 
