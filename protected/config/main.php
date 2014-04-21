@@ -13,7 +13,7 @@ return array(
         'application.components.*',
     ),
 
-    'modules' => array('email', 'newspaper'),
+    'modules' => array('email', 'newspaper', 'promo'),
 
     'components' => array(
 

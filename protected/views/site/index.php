@@ -14,6 +14,12 @@
                     Рассылки
                 </a>
             </li>
+            <li>
+                <a href="/promo/">
+                    <i class="icon icon-promo"></i>
+                    Промо
+                </a>
+            </li>
         </ul>
     </div>
 
