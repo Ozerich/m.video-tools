@@ -1,0 +1,326 @@
+.constructor-container {
+
+  > span {
+    margin: 15px 10px;
+    font-size: 150%;
+  }
+
+  .block-container {
+    margin-top: 10px;
+    border: 1px dashed #aaa;
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+
+    .block-loader {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1100;
+      display: block;
+      background: #aaa;
+      opacity: .5;
+    }
+
+    .block-preview-container {
+
+      > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 300px;
+        font-size: 45px;
+        text-align: center;
+        color: #000;
+      }
+
+      .preview-header {
+        overflow: hidden;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #aaa;
+        margin-bottom: 5px;
+        > span {
+          float: left;
+        }
+        .actions {
+          float: right;
+        }
+      }
+
+      img {
+        display: block;
+        margin: 10px auto;
+      }
+    }
+
+    .form-container {
+      .form-inner {
+        min-height: 220px;
+
+        .param {
+          overflow: hidden;
+          margin-bottom: 5px;
+
+          > .param-header {
+            label{
+              font-weight: bold;
+            }
+            a {
+              float: right;
+              font-size: 12px;
+              line-height: 24px;
+              color: blue;
+            }
+          }
+          > label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 4px;
+            cursor: pointer;
+          }
+
+          textarea {
+            height: 135px;
+          }
+        }
+
+        .param-product-url {
+          .image-container {
+            text-align: center;
+
+            ul{
+              margin: 10px 0;
+              li{
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+                &:last-child{
+                  border-bottom: none;
+                }
+              }
+            }
+
+            .link-form-container{
+              overflow: hidden;
+              text-align: left;
+
+              .input-coords{
+                width: 121px;
+                display: inline-block;
+              }
+
+              .input-utm_content{
+                width: 295px;
+                display: inline-block;
+              }
+
+              .input-alt{
+                display: block;
+                margin: 8px 121px;
+                width: 420px;
+              }
+
+              .input-url{
+                display: block;
+                width: 420px;
+                margin: 8px 0;
+              }
+
+              .btn-danger{
+                float: left;
+              }
+
+              .btn-success{
+                float: right;
+              }
+
+            }
+
+            .link-preview-container{
+              span{
+                display: block;
+                font-size: 12px;
+              }
+              a{
+                font-size: 12px;
+                &.btn-edit{
+                  color: green;
+                }
+                &.btn-delete{
+                  color: red;
+                }
+              }
+            }
+
+          }
+        }
+
+        .param-radio {
+          margin: 8px 0;
+          .param-input {
+            label {
+              margin: 0 15px 0 10px;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .param-banner-container {
+
+          .image-container {
+            text-align: center;
+            margin: 15px 0;
+            img {
+            }
+          }
+
+          .banner-form-container {
+            margin: 15px 0 15px 50px;
+            overflow: hidden;
+            button {
+              float: left;
+              margin: 28px 0 0 5px;
+            }
+            .param {
+              float: left;
+              label {
+                display: block;
+              }
+              &.param-coords {
+                width: 150px;
+                float: left;
+                input {
+                  text-align: center;
+                }
+              }
+              &.param-url {
+                width: 350px;
+                margin-left: 10px;
+              }
+              &.param-utm_content{
+                width: 150px;
+                margin-left: 10px;
+              }
+              &.param-alt {
+                width: 510px;
+                margin-left: 160px;
+              }
+            }
+          }
+
+          ul {
+            width: 400px;
+            margin: 0 auto;
+            li {
+              overflow: hidden;
+              > a {
+                float: left;
+                color: blue;
+              }
+              .actions {
+                float: right;
+                width: 70px;
+                a {
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+      .form-buttons {
+        height: 60px;
+        border-top: 1px solid;
+        overflow: hidden;
+        padding-top: 15px;
+        margin-top: 15px;
+
+        .btn-cancel {
+          float: left;
+        }
+
+        .btn-submit {
+          float: right;
+        }
+      }
+
+    }
+  }
+
+  &.constructor-blocks-container {
+    .new-block-container {
+      height: 360px;
+      background: #fcfcfc;
+    }
+  }
+
+  &.constructor-content-container {
+    .block-container {
+      margin: 10px 0;
+    }
+    .block-small-container {
+      width: 460px;
+      float: left;
+      margin-right: 50px;
+      &.block-right {
+        margin-right: 0;
+      }
+      .block-preview-container {
+        img {
+          max-width: 350px;
+        }
+      }
+    }
+    .block-big-container {
+      clear: both;
+    }
+
+    .product-preview {
+      padding: 10px 20px;
+
+      a {
+        color: #0076d0;
+      }
+
+      .product-category {
+        font-weight: bold;
+        display: block;
+      }
+      .product-name {
+        display: block;
+      }
+      .product-image {
+        margin: 5px 0;
+        text-align: center;
+      }
+      .prices-container {
+        text-align: right;
+        padding-right: 50px;
+        .old-price {
+          color: #aaa;
+          display: block;
+        }
+        .price {
+          font-weight: bold;
+        }
+      }
+      .param-url {
+        margin-top: 10px;
+      }
+      .product-yellow {
+        display: block;
+        background: yellow;
+        text-align: center;
+      }
+      .url-all {
+        display: block;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 5px 0;
+      }
+    }
+  }
+}

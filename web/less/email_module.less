@@ -1,0 +1,156 @@
+#page_email_index {
+  .cell-reff {
+    width: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cell-actions {
+    width: 220px;
+    max-width: 220px;
+  }
+  .cell-date {
+    width: 150px;
+    max-width: 150px;
+  }
+}
+
+input[type=checkbox] {
+  width: auto;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#tab_footer {
+
+  .footer-stocks-container {
+    margin: 20px 0;
+    padding-bottom: 10px;
+    > span {
+      margin: 15px 10px;
+      font-size: 150%;
+    }
+
+    .stock {
+      margin: 10px 0;
+      border-bottom: 1px solid #aaa;
+      padding: 10px 0;
+
+      .stock-closed {
+        overflow: hidden;
+        > span {
+          float: left;
+          line-height: 40px;
+        }
+        .buttons {
+          float: right;
+        }
+      }
+
+      .stock-opened {
+
+        overflow: hidden;
+        margin: 10px 0;
+
+        > div {
+          margin: 15px 0;
+          overflow: hidden;
+        }
+
+        .buttons {
+          overflow: hidden;
+          margin: 0 15px;
+          .btn-danger {
+            float: left;
+          }
+          .btn-success {
+            float: right;
+          }
+        }
+      }
+
+      .date-input {
+        padding-right: 20px;
+      }
+
+    }
+
+    .add-btn-container {
+      text-align: center;
+      margin: 10px 0;
+      a {
+        float: none;
+      }
+    }
+  }
+
+  .disclaimer-container {
+    > span {
+      margin: 15px 10px;
+      font-size: 150%;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+    }
+  }
+
+}
+
+#tab_view {
+  .viewer-container {
+    text-align: center;
+    .loader {
+      height: 300px;
+      width: 100%;
+      border: 1px solid #aaa;
+      font-size: 80px;
+      line-height: 300px;
+      font-weight: bold;
+    }
+
+    .email-container {
+      margin-bottom: 10px;
+      label {
+        display: inline-block;
+      }
+      input {
+        width: 300px;
+        display: inline-block;
+        margin: 0 10px;
+      }
+      button {
+        display: inline-block;
+        width: 105px;
+      }
+    }
+
+  }
+}
+
+#tab_download {
+  padding: 0 50px;
+
+  .regions-container {
+    > span {
+      margin: 15px 10px;
+      font-size: 150%;
+    }
+    .regions {
+      overflow: hidden;
+      margin-bottom: 20px;
+      label {
+        display: block;
+        float: left;
+        margin: 5px 25px;
+      }
+    }
+    button {
+      margin: 0 auto;
+      float: none;
+      width: 150px;
+      display: block;
+    }
+  }
+}

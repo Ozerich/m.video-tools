@@ -23,6 +23,7 @@
 <body>
 
 <div class="page-container">
+    <? $this->renderPartial('/page_panel'); ?>
     <header>
         <a href="/" class="brand"><img src="/web/img/mvideo.png"></a>
     </header>
@@ -42,3 +43,4 @@
 </div>
 
 </body>
+</html>

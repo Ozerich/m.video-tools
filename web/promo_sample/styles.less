@@ -1,0 +1,241 @@
+@images_dir: "pics/a/{PROMO_NAME}/";
+
+@font_mvideo: "MVideoRegular", Arial, sans-serif;
+@font_mvideo_bold: "MVideoBold", Arial, sans-serif;
+@font_mvideo_light: "MVideoLight", Arial, sans-serif;
+
+.bold(@font-size) {
+  font-family: @font_mvideo_bold;
+  font-weight: normal;
+  font-size: @font-size;
+}
+
+.header-with-content-container(@min_height, @content_container_offset_y: '30px', @content_container_offset_x: '540px', @content_container_width: '300px', @content_container_padding_top: '28px', @content_container_header_font_size: '22px') {
+  display: block;
+
+  padding-top: @content_container_offset_y;
+  min-height: @min_height - @content_container_offset_y;
+
+  padding-left: @content_container_offset_x;
+
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-image: url('@{images_dir}header.jpg');
+  position: relative;
+
+  > .badge {
+    position: absolute;
+    display: block;
+    background: url('@{images_dir}header_badge.png') no-repeat;
+  }
+  
+	input[type=text] {
+	  height: 42px;
+	  line-height: 42px;
+	  padding: 0 14px;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	}
+
+	a, input[type=submit]{
+	  background: #ea181f;
+	  display: block;
+	  float: left;
+	  height: 44px;
+	  line-height: 44px;
+	  text-align: center;
+	  .bold(16px);
+	  color: #fff;
+	  margin-top: 30px;
+	  border-radius: 5px;
+	  padding: 0 50px;
+	  text-decoration: none;
+	  cursor: pointer;
+	  border: 0 none;
+	  outline: none;
+	  &:hover{
+		background: #dc171d;
+	  }
+	}
+
+  > .content-container {
+    background: #fafbfb;
+    border: 1px solid #dfdfdf;
+    width: @content_container_width - 54px;
+    padding: 28px;
+    padding-top: @content_container_padding_top;
+    background-repeat: no-repeat;
+    background-position: 28px 28px;
+    overflow: hidden;
+
+    > span {
+      display: block;
+      .bold(@content_container_header_font_size);
+      line-height: @content_container_header_font_size + 2;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    > p {
+      display: block;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: normal;
+      color: #333;
+    }
+	
+	.subscribe-container{
+      overflow: hidden;
+      margin-top: 8px;
+      input[type=text]{
+        float: left;
+        width: 145px;
+      }
+      input[type=submit]{
+        float: right;
+        font-size: 14px;
+        width: 125px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+  }
+}
+
+.header-with-content-container-with-logo(@min_height, @content_container_offset_y: 30px, @content_container_offset_x: 540px, @content_container_width: 300px, @content_container_logo_height: 28px, @content_container_header_font_size: 22px) {
+  .header-with-content-container(@min_height, @content_container_offset_y, @content_container_offset_x, @content_container_width, 40 + @content_container_logo_height, @content_container_header_font_size);
+  > .content-container {
+    background-image: url('@{images_dir}header_logo.png');
+  }
+}
+
+.header-with-content-container-without-logo(@min_height, @content_container_offset_y: 30px, @content_container_offset_x: 540px, @content_container_width: 300px, @content_container_header_font_size: 22px) {
+  .header-with-content-container(@min_height, @content_container_offset_y, @content_container_offset_x, @content_container_width, 28px, @content_container_header_font_size);
+}
+
+.feature(@feature_num, @margin_top, @padding_top, @min_height) {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-image: url("@{images_dir}feature_0@{feature_num}.jpg");
+  padding-top: @padding_top - @margin_top;
+  min-height: @min_height - @margin_top - (@padding_top - @margin_top);
+  border-bottom: 1px solid #dfdfdf;
+  margin: 0 18px;
+  margin-top: @margin_top;
+  
+  > span {
+    .bold(22px);
+    line-height: 24px;
+    display: block;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  > p {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+  }
+}
+
+@feature_padding_left: 480px;
+
+.feature-left(@feature_num, @margin_top, @padding_top, @min_height) {
+  .feature(@feature_num, @margin_top, @padding_top, @min_height);
+  padding-left: @feature_padding_left;
+  background-position: left top;
+}
+
+.feature-right(@feature_num, @margin_top, @padding_top, @min_height) {
+  .feature(@feature_num, @margin_top, @padding_top , @min_height);
+  background-position: right top;
+}
+
+#{PROMO_NAME} {
+  padding-bottom: 100px;
+  color: #000;
+  font-family: @font_mvideo, Arial, sans-serif;
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  td, a, p, span, li, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+  
+  .video-container {
+
+    @video_height: 412px;
+    @video_width: 680px;
+
+    background: #333333;
+    overflow: hidden;
+    padding: 35px 15px 50px 15px;
+    > span {
+      color: #fff;
+      .bold(22px);
+      display: block;
+      margin-bottom: 25px;
+      line-height: 100%;
+      text-align: left;
+    }
+    .video-inner {
+      overflow: hidden;
+      .video {
+        float: left;
+        height: @video_height;
+        width: @video_width;
+      }
+      > p {
+        display: block;
+        color: #fff;
+        margin-left: @video_width + 40;
+        font-size: 14px;
+        line-height: 20px;
+        padding-top: 5px;
+        > span{
+          color: #fff;
+          .bold(22px);
+          line-height: 24px;
+          margin-bottom: 15px;
+          display: block;
+        }
+      }
+    }
+  }
+  
+  > p{
+  
+	@p_font_size: 32px;
+  
+    font-family: @font_mvideo_light, Arial, sans-serif;
+    display: block;
+    padding: 30px 0;
+    text-align: center;
+    color: #333;
+	font-size: @p_font_size;
+	line-height: @p_font_size + 4;
+	margin: 0 18px;
+	
+	> a{
+		font-family: @font_mvideo_light, Arial, sans-serif;
+		font-size: @p_font_size;
+		line-height: @p_font_size + 4;
+		text-decoration: underline;
+	}
+	
+	> strong{
+      .bold(@p_font_size);
+    }
+  }
+
+}
