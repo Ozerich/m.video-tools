@@ -50,7 +50,7 @@
 						<tr>
 						
 						<td align="center" style="text-align: center">
-							<?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/logo.jpg','http://www.mvideo.ru/', array(), 'a_head_logo', 'Перейти на сайт М.Видео'); ?>                                                                                                                    </td>						
+							<?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/logo.jpg','http://www.mvideo.ru/', array(), 'a_head_logo', 'Перейти на сайт М.Видео'); ?>                                                                                                                    </td>						
 						</tr>
 						
 						<tr>
@@ -58,11 +58,11 @@
 							</td>
 						</tr>
 						
-						<? if($letter->getOption('short_mode', 0) == 0): ?>
+						<? if($letter->getOption('short_mode', 0) == 0 || 1): ?>
 						<tr>
 							<td align="center" style="text-align: center">
 								<? /*
-								<img usemap="#img_nav" width="600" height="72" vspace="0" hspace="0" border="0" src="http://www.mvideo.ru/pics/o/mailer/common/menu.jpg" alt="">
+								<img usemap="#img_nav" width="600" height="72" vspace="0" hspace="0" border="0" src="http://static.mvideo.ru/pics/o/mailer/common/menu.jpg" alt="">
 								<map id="img_nav" name="img_nav">
 									<area alt="Телефоны" title="Телефоны" target="_blank" href="<?=HtmlHelper::prepare_url('http://www.mvideo.ru/telefony', 'a_head_menu')?>" shape="rect" coords="0,0,84,54">
 									<area alt="Ноутбуки, планшеты и компьютеры" title="Ноутбуки, планшеты и компьютеры" target="_blank" href="<?=HtmlHelper::prepare_url('http://www.mvideo.ru/noutbuki-planshety-i-kompyutery', 'a_head_menu')?>" shape="rect" coords="84,0,216,55">
@@ -75,13 +75,13 @@
 */?>	
 								<table cellpadding="0" cellspacing="0" height="55" width="100%" border="0">
 									<tr>
-										<td height="55" width="100"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_01.jpg','http://www.mvideo.ru/telefony', array(), 'a_head_menu', 'Телефоны'); ?></td>
-										<td height="55" width="101"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_02.jpg','http://www.mvideo.ru/noutbuki-planshety-i-kompyutery', array(), 'a_head_menu', 'Ноутбуки, планшеты и компьютеры'); ?></td>
-										<td height="55" width="100"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_03.jpg','http://www.mvideo.ru/televizory-i-video', array(), 'a_head_menu', 'Телевизоры и видео'); ?></td>
-										<td height="55" width="74"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_04.jpg','http://www.mvideo.ru/tehnika-dlya-kuhni', array(), 'a_head_menu', 'Техника для кухни'); ?></td>
-										<td height="55" width="76"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_05.jpg','http://www.mvideo.ru/tehnika-dlya-doma', array(), 'a_head_menu', 'Техника для дома'); ?></td>
-										<td height="55" width="75"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_06.jpg','http://www.mvideo.ru/fotoapparaty-i-videotehnika', array(), 'a_head_menu', 'Фото и Видео'); ?></td>
-										<td height="55" width="74"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/header_nav_single_07.jpg','http://www.mvideo.ru/catalog', array(), 'a_head_menu', 'Другие категории'); ?></td>
+										<td height="55" width="100"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_01.jpg','http://www.mvideo.ru/telefony', array(), 'a_head_menu', 'Телефоны'); ?></td>
+										<td height="55" width="101"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_02.jpg','http://www.mvideo.ru/noutbuki-planshety-i-kompyutery', array(), 'a_head_menu', 'Ноутбуки, планшеты и компьютеры'); ?></td>
+										<td height="55" width="100"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_03.jpg','http://www.mvideo.ru/televizory-i-video', array(), 'a_head_menu', 'Телевизоры и видео'); ?></td>
+										<td height="55" width="74"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_04.jpg','http://www.mvideo.ru/tehnika-dlya-kuhni', array(), 'a_head_menu', 'Техника для кухни'); ?></td>
+										<td height="55" width="76"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_05.jpg','http://www.mvideo.ru/tehnika-dlya-doma', array(), 'a_head_menu', 'Техника для дома'); ?></td>
+										<td height="55" width="75"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_06.jpg','http://www.mvideo.ru/fotoapparaty-i-videotehnika', array(), 'a_head_menu', 'Фото и Видео'); ?></td>
+										<td height="55" width="74"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/header_nav_single_07.jpg','http://www.mvideo.ru/catalog', array(), 'a_head_menu', 'Другие категории'); ?></td>
 									</tr>
 								</table>
 								

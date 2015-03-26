@@ -258,29 +258,32 @@ return $row->on_list;
 <center>
 <table width="602" cellpadding="0" cellspacing="0" border="0">
 	<tr height="118">
-		<td width="123"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_01.jpg','http://www.mvideo.ru/televizory-i-cifrovoe-tv-1', array(), 'a_foot_menu', 'Телевизоры и цифровое ТВ'); ?></td>
-		<td width="113"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_02.jpg','http://www.mvideo.ru/noutbuki-planshety-komputery/noutbuki-118', array(), 'a_foot_menu', 'Ноутбуки'); ?></td>
-		<td width="126"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_03.jpg','http://www.mvideo.ru/noutbuki-planshety-komputery/planshety-195', array(), 'a_foot_menu', 'Планшеты'); ?></td>
-		<td width="113"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_04.jpg','http://www.mvideo.ru/noutbuki-planshety-komputery/komputery-i-noutbuki-apple-164', array(), 'a_foot_menu', 'Apple'); ?></td>
-		<td width="127"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_05.jpg','http://www.mvideo.ru/smartfony-sotovye-telefony-10', array(), 'a_foot_menu', 'Смартфоны и сотовые телефоны'); ?></td>
+		<td width="123"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_01.jpg','http://www.mvideo.ru/televizory-i-cifrovoe-tv-1', array(), 'a_foot_menu', 'Телевизоры и цифровое ТВ'); ?></td>
+		<td width="113"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_02.jpg','http://www.mvideo.ru/noutbuki-planshety-komputery/noutbuki-118', array(), 'a_foot_menu', 'Ноутбуки'); ?></td>
+		<td width="126"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_03.jpg','http://www.mvideo.ru/noutbuki-planshety-komputery/planshety-195', array(), 'a_foot_menu', 'Планшеты'); ?></td>
+		<td width="113"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_04.jpg','http://www.mvideo.ru/noutbuki-planshety-komputery/komputery-i-noutbuki-apple-164', array(), 'a_foot_menu', 'Apple'); ?></td>
+		<td width="127"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_05.jpg','http://www.mvideo.ru/smartfony-sotovye-telefony-10', array(), 'a_foot_menu', 'Смартфоны и сотовые телефоны'); ?></td>
 	</tr>
 	<tr height="125">
-		<td width="123"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_06.jpg','http://www.mvideo.ru/elektronnye-knigi-i-aksessuary/elektronnye-knigi-73', array(), 'a_foot_menu', 'Электронные книги'); ?></td>
-		<td width="113"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_07.jpg','http://www.mvideo.ru/fotoapparaty-i-videotehnika', array(), 'a_foot_menu', 'Фото и видео'); ?></td>
-		<td width="126"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_08.jpg','http://www.mvideo.ru/audiotehnika', array(), 'a_foot_menu', 'Аудио'); ?></td>
-		<td width="113"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_09.jpg','http://www.mvideo.ru/krasota-i-zdorove', array(), 'a_foot_menu', 'Красота и здоровье'); ?></td>
-		<td width="127"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_10.jpg','http://www.mvideo.ru/tehnika-dlya-kuhni', array(), 'a_foot_menu', 'Техника для кухни'); ?></td>
+		<td width="123"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_06.jpg','http://www.mvideo.ru/elektronnye-knigi-i-aksessuary/elektronnye-knigi-73', array(), 'a_foot_menu', 'Электронные книги'); ?></td>
+		<td width="113"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_07.jpg','http://www.mvideo.ru/fotoapparaty-i-videotehnika', array(), 'a_foot_menu', 'Фото и видео'); ?></td>
+		<td width="126"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_08.jpg','http://www.mvideo.ru/audiotehnika', array(), 'a_foot_menu', 'Аудио'); ?></td>
+		<td width="113"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_09.jpg','http://www.mvideo.ru/krasota-i-zdorove', array(), 'a_foot_menu', 'Красота и здоровье'); ?></td>
+		<td width="127"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_10.jpg','http://www.mvideo.ru/tehnika-dlya-kuhni', array(), 'a_foot_menu', 'Техника для кухни'); ?></td>
 	</tr>
 	<tr height="131">
-		<td width="123"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_11.jpg','http://www.mvideo.ru/bytovaya-tehnika-2', array(), 'a_foot_menu', 'Бытовая техника'); ?></td>
-		<td width="113"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_12.jpg','http://www.mvideo.ru/avtomobilnaya-elektronika-i-gps', array(), 'a_foot_menu', 'Автотехника'); ?></td>
-		<td width="126"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_13.jpg','http://www.mvideo.ru/igry-i-razvlecheniya', array(), 'a_foot_menu', 'Игры и развлечения'); ?></td>
-		<td width="113"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_14.jpg','http://www.mvideo.ru/komputernye-programmy-i-pc-igry-19', array(), 'a_foot_menu', 'Компьютерные программы'); ?></td>
-		<td width="127"><?= HtmlHelper::Banner('http://www.mvideo.ru/pics/o/mailer/common/footer_nav_single_15.jpg','http://www.mvideo.ru/aksessuary-dlya-telefonov-58', array(), 'a_foot_menu', 'Аксессуары'); ?></td>
+		<td width="123"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_11.jpg','http://www.mvideo.ru/bytovaya-tehnika-2', array(), 'a_foot_menu', 'Бытовая техника'); ?></td>
+		<td width="113"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_12.jpg','http://www.mvideo.ru/avtomobilnaya-elektronika-i-gps', array(), 'a_foot_menu', 'Автотехника'); ?></td>
+		<td width="126"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_13.jpg','http://www.mvideo.ru/igry-i-razvlecheniya', array(), 'a_foot_menu', 'Игры и развлечения'); ?></td>
+		<td width="113"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_14.jpg','http://www.mvideo.ru/komputernye-programmy-i-pc-igry-19', array(), 'a_foot_menu', 'Компьютерные программы'); ?></td>
+		<td width="127"><?= HtmlHelper::Banner('http://static.mvideo.ru/pics/o/mailer/common/footer_nav_single_15.jpg','http://www.mvideo.ru/aksessuary-dlya-telefonov-58', array(), 'a_foot_menu', 'Аксессуары'); ?></td>
 	</tr>
 </table>     
 </center>                                                                                                                
 </td></tr>
+
+
+<? endif; ?>
 
 
 <tr>
@@ -289,42 +292,8 @@ return $row->on_list;
     </td>
 </tr>
 
-<? endif; ?>
-
-<? /*
-<tr>
-    <td align="center" style="text-align: center"><center>
-        <table width="600" cellspacing="0" cellpadding="0" border="0">
-            <tbody>
-            <tr>
-                <td>
-                    <?= HtmlHelper::Font('Мы здесь:', array('font' => 'Arial', 'size' => 13, 'color' => '#333')); ?>
-                    &nbsp;&nbsp;&nbsp;
-                    <?= HtmlHelper::Link('http://www.facebook.com/MVideo.ru', HtmlHelper::Image('http://static.mvideo.ru/img/mailer/soc_fb.gif', '', array('vertical-align' => 'middle'))); ?>
-                    &nbsp;
-                    <?= HtmlHelper::Link('http://vk.com/mvideo', HtmlHelper::Image('http://static.mvideo.ru/img/mailer/soc_vk.gif', '', array('vertical-align' => 'middle'))); ?>
-                    &nbsp;
-                    <?= HtmlHelper::Link('http://twitter.com/mvideo', HtmlHelper::Image('http://static.mvideo.ru/img/mailer/soc_tw.gif', '', array('vertical-align' => 'middle'))); ?>
-                    &nbsp;
-                    <?= HtmlHelper::Link('http://odnoklassniki.ru/mvideo/', HtmlHelper::Image('http://static.mvideo.ru/img/mailer/soc_ok.gif', '', array('vertical-align' => 'middle'))); ?>
-                    &nbsp;
-                    <?= HtmlHelper::Link('http://instagram.com/mvideo_ru', HtmlHelper::Image('http://static.mvideo.ru/img/mailer/soc_ins.gif', '', array('vertical-align' => 'middle'))); ?>
-                </td>
-            </tr>
-            </tbody>
-        </table></center>
-    </td>
-</tr>
-
-<tr>
-    <td>
-        <? HtmlHelper::PrintSpacer(0, 27); ?>
-    </td>
-</tr>
-*/?>
-
-<table width="<?=$letter->getOption('page_width', 638)?>" cellspacing="0" cellpadding="0" border="0" bgcolor="#dfdfdf"
-       style="border-collapse:separate; text-align: left; border-bottom:1px solid #ccc;border-left:1px solid #ccc;border-right:1px solid #ccc; margin: 0 auto; background: #dfdfdf">
+<table width="<?=$letter->getOption('page_width', 638)?> " cellspacing="0" cellpadding="0" border="0" bgcolor="#dfdfdf"
+       style="border-collapse:separate; text-align: left; border-bottom:1px solid #ccc; margin: 0 auto; background: #dfdfdf">
 <tbody>
 
 	<tr>
@@ -350,7 +319,7 @@ return $row->on_list;
 						
 
 	<? $texts = array(
-	$letter->disclaimer,
+	nl2br($letter->disclaimer),
 	'Если вы не хотите больше получать информацию об акциях, распродажах и спецпредложениях, пожалуйста, пройдите по ' . HtmlHelper::Link('https://contact.mvideo.ru/u/register_bg.php?owner_id=303739311&f=1794&key_id=3&optin=n&inp_3=$Email$&landing=http://mvideo.ru/unsubscribe-confirmation/
 ',
 		HtmlHelper::Font('ссылке', array('size' => 13, 'color' => '#A3A0A0', 'underline' => true)), 'a_foot_links') . '.',

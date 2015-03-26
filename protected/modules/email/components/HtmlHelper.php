@@ -14,7 +14,7 @@ class HtmlHelper
 			$images_url .= '/';
 		}
 		
-        self::$reff = $reff;
+        self::$reff = 'Action_mail_email';
         self::$region = $region;
         self::$utm_campaign = $utm_campaign;
         self::$images_url = $images_url;
@@ -212,7 +212,7 @@ class HtmlHelper
         }
         $css_options = implode(';', $css_options);
 
-       // $sizes = self::get_image_size($url);
+        $sizes = self::get_image_size($url);
 
        // if (!$sizes) {
         //    return '';
@@ -222,7 +222,7 @@ class HtmlHelper
 			$content_width = true;
 		}
 
-        return '<img ' . ($map ? 'usemap="#' . $map . '" ' : '') . ($css_options ? 'style="' . $css_options . '"' : '') .($content_width ? ' class="contentWidth"' : '').' vspace="0" hspace="0" border="0" src="' . $url . '" alt="' . trim($alt) . '">';
+        return '<img width="'.$sizes[0].'" height="'.$sizes[1].'" ' . ($map ? 'usemap="#' . $map . '" ' : '') . ($css_options ? 'style="' . $css_options . '"' : '') .($content_width ? ' class="contentWidth"' : '').' vspace="0" hspace="0" border="0" src="' . $url . '" alt="' . trim($alt) . '">';
     }
 
     public static function Banner($file, $url = null, $areas = array(), $utm_content = null, $alt = '')

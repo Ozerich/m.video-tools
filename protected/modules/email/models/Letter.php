@@ -5,9 +5,9 @@ class Letter extends CActiveRecord
     public static function GetLayouts()
     {
         return array(
+            'catalog_new' => 'НОВЫЙ каталог',
             'catalog_old' => 'Каталог для старого сайта',
             'catalog' => 'Каталог',
-            'catalog_new' => 'НОВЫЙ каталог',
 			'catalog_adaptive' => 'Адаптивная верстка',
 			'empty' => 'Пустой',
         );

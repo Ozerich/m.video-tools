@@ -10,7 +10,7 @@
         <thead>
         <th class="cell-date">Дата рассылки</th>
         <th class="cell-name">Название</th>
-        <th class="cell-reff">Рефф</th>
+        <th class="cell-reff">utm_campaign</th>
         <th class="cell-actions">Действия</th>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
             <tr>
                 <td class="cell-date"><?= date('d.m.Y', strtotime($model->date)) ?></td>
                 <td class="cell-name"><?= $model->name ?></td>
-                <td class="cell-reff"><?= $model->reff ?></td>
+                <td class="cell-reff"><?= $model->utm_campaign ?></td>
                 <td class="cell-actions">
                     <a href="/email/default/edit/<?= $model->id ?>" class="btn btn-small btn-success">Редактировать</a>
                     <a onclick="return confirm('Вы уверены что хотите удалить рассылку?');"

@@ -239,8 +239,8 @@ class AjaxController extends Controller
 
             $files[] = $dir . '/' . $filename;
         }
-
-        $zip_name = date('d.m.Y', strtotime($model->date)) . '.zip';
+		
+        $zip_name = date('d.m.Y', strtotime($model->date)). '.zip';
         $zip_filepath = $tmp_dir . '/' . $zip_name;
 
         if (file_exists($zip_filepath)) {

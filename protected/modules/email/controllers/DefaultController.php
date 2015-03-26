@@ -12,7 +12,14 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Letter();
-
+		$model->layout = 'catalog_new';
+		
+		$model->date = date('Y-m-d');
+		
+		$month_labels = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+		
+		$model->name = 'Рассылка за '.date('d ').$month_labels[date('m') - 1];
+		
         if (Yii::app()->request->isPostRequest) {
             $model->attributes = $_POST['Letter'];
 
@@ -34,7 +41,7 @@ class DefaultController extends Controller
                     }
                 }
 
-                $this->redirect('/email/default/edit/' . $model->id);
+                $this->redirect('/email/default/edit/' . $model->id.'?tab=2');
             }
         }
 
